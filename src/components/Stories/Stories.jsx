@@ -3,6 +3,7 @@ import React from 'react';
 import Story from './Story';
 import { dumy } from '../../assets';
 
+
 const Stories = () => {
   const users = [
     { imageUrl: dumy, username: 'user1' },

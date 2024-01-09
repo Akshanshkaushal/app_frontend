@@ -1,18 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
 import Stories from './components/Stories/Stories';
-import Post from './components/Post';
 import Navbar from './components/BottomBar/Navbar';
+import PostList from './components/Posts/PostList';
 
 function App() {
   return (
-     <>
-     <div className=' '>
+  
+     <div>
       <Stories/>
-      <Post/>
+      <PostList/>
        <Navbar/>
        </div>
-     </>
+    
   );
 }
 
