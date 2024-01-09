@@ -1,24 +1,44 @@
 import React, { useState } from 'react';
 import { FaHeart, FaComment, FaShare } from 'react-icons/fa';
 import { dumy } from '../../assets';
-import "./style.css";
+import './style.css';
+import { useNavigate } from 'react-router-dom';
+import { useLiked } from '../../Contexts/LikedContext';
 
 const SinglePost = ({ post, style }) => {
-  const [liked, setLiked] = useState(false);
+  const { likedPosts, setLiked } = useLiked();
+  const navigate = useNavigate();
+  let clickCount = 0;
 
-  const handleDoubleTap = () => {
-    setLiked((prevLiked) => !prevLiked);
-   };
- 
+  const handleClick = () => {
+    clickCount++;
+
+    if (clickCount === 1) {
+      setTimeout(() => {
+        if (clickCount === 1) {
+          // Single click
+          navigateToPostPage();
+        }
+        clickCount = 0;
+      }, 500);
+    } else if (clickCount === 2) {
+      // Double click
+      setLiked(post.id, !likedPosts[post.id]);
+      clickCount = 0;
+    }
+  };
+
+  const navigateToPostPage = () => {
+    navigate(`/post/${post.id}`);
+  };
 
   return (
-    <div className="relative rounded-lg shadow-md overflow-hidden bg-no-repeat bg-center bg-cover w-screen" 
-    style={style}
-    >
+    <div className="relative rounded-lg shadow-md overflow-hidden bg-no-repeat bg-center bg-cover w-screen cursor-pointer"
+      style={{ ...style, position: 'relative' }}>
       <div
         className="h-[29rem] bg-no-repeat bg-center bg-cover bordert"
-        style={{ background: `url(${post.image}) center/cover`, color: 'red' }}
-        onDoubleClick={handleDoubleTap}
+        style={{ background: `url(${post.slides ? post.slides[0].image : post.image}) center/cover`, color: 'red' }}
+        onClick={handleClick}
       >
         <div className='flex flex-row items-center p-4'>
           <img src={dumy} className='w-8 h-8 rounded-full' alt="User Avatar" />
@@ -29,33 +49,31 @@ const SinglePost = ({ post, style }) => {
 
         {/* Post Content */}
         <div className='p-8 m-2 text-white'>
-          {/* Content for post */}          
+          {/* Add your post content here */}
         </div>
 
-   
         <div className="absolute bottom-16 left-4 flex items-center space-x-4">
           {/* Like */}
-          <div className={`flex flex-row relative rounded-3xl ${liked ? 'bg-red-500 opacity-90' : 'bg-black opacity-10'}   w-24 h-10 `}>
+          <div onClick={handleClick}>
+          <div className={`flex flex-row relative rounded-3xl ${likedPosts[post.id] ? 'bg-red-500 opacity-90' : 'bg-black opacity-10'} w-24 h-10`}>
+            </div>
+            <div
+              className={`flex absolute bottom-2.5 left-3 opacity-100 items-center text-white`}
+            >
+              <FaHeart size={20} />
+            </div>
+            <div className='text-white absolute bottom-2 left-11 '>
+              7.8K
+            </div>
           </div>
-          <div
-            className={`flex absolute opacity-100 items-center text-white`}
-            onClick={handleDoubleTap}
-          >
-            <FaHeart size={20} />
-          </div>
-          <div className='text-white absolute bottom-2 left-6 '>
-           7.8K
-          </div>
-
           {/* Comment */}
           <div className="flex items-center text-white cursor-pointer">
             <FaComment size={20} />
           </div>
-
           {/* Share */}
           <div
             className="flex items-center text-white cursor-pointer"
-           >
+          >
             <FaShare size={20} />
           </div>
         </div>
