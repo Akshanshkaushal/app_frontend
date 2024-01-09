@@ -6,6 +6,7 @@ import './style.css';
 import { useLiked } from '../../Contexts/LikedContext';
 import { dumy } from '../../assets';
 import { useSwipeable } from 'react-swipeable';
+import { CSSTransition } from 'react-transition-group';
 
 const PostPage = () => {
   const { postId } = useParams();
@@ -55,6 +56,12 @@ const PostPage = () => {
   }
 
   return (
+    <CSSTransition
+    in={true}
+    appear={true}
+    timeout={500}
+    classNames="fade"
+  >
     <div {...handlers}>
       <div
         className="h-[29rem] bg-no-repeat bg-center bg-cover bordert my-12 relative"
@@ -62,7 +69,7 @@ const PostPage = () => {
         onDoubleClick={handleClick}
       >
         <div className='flex flex-row items-center p-4'>
-          <img src={dumy} className='w-8 h-8 rounded-full' alt="User Avatar" />
+          <img src={post.userUrl} className='w-8 h-8 rounded-full' alt="User Avatar" />
           <div className="ml-2">
             <div className="text-white font-bold">{post.username}</div>
           </div>
@@ -112,6 +119,7 @@ const PostPage = () => {
         <FaArrowLeft size={24} style={{ color: 'white' }} />
       </div>
     </div>
+    </CSSTransition>
   );
 };
 

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FaHeart, FaComment, FaShare } from 'react-icons/fa';
-import { dumy } from '../../assets';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
 import { useLiked } from '../../Contexts/LikedContext';
@@ -41,7 +40,7 @@ const SinglePost = ({ post, style }) => {
         onClick={handleClick}
       >
         <div className='flex flex-row items-center p-4'>
-          <img src={dumy} className='w-8 h-8 rounded-full' alt="User Avatar" />
+          <img src={post.userUrl} className='w-10 h-10 rounded-full' alt="User Avatar" />
           <div className="ml-2">
             <div className="text-white font-bold">{post.username}</div>
           </div>
