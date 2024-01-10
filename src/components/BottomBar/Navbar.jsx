@@ -31,17 +31,18 @@ const Navbar = () => {
     );
   };
  
-const AddButtonContent = () => {
-  return (
-    <div className={`absolute bottom-24 left-16 ${isOpen ? 'animated-rotate' : ''}`}>
-      <div className="flex flex-row">
-        <div className="bg-red-500 h-16 w-16 m-2 rounded-full animate-arc"></div>
-        <div className="bg-green-500 h-16 w-16 m-2 rounded-full animate-arc"></div>
-        <div className="bg-blue-500 h-16 w-16 m-2 rounded-full animate-arc"></div>
+  const AddButtonContent = () => {
+    return (
+      <div className={`absolute bottom-24 left-20 ${isOpen ? 'animated-rotate' : ''}`}>
+        <div className="flex flex-row custom">
+          <div className="bg-red-500 h-16 w-16 m-0 rounded-t-3xl rounded-b-2xl"></div>
+          <div className="bg-green-500 h-16 w-16 m-0  rounded-t-3xl rounded-b-2xl"></div>
+          <div className="bg-blue-500 h-16 w-16 m-0 rounded-t-3xl rounded-b-2xl"></div>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
+  
 
    
 

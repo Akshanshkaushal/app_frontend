@@ -1,13 +1,38 @@
  @keyframes rotateIn {
     from {
-      transform: rotate(0deg);
+      transform: rotate(-180deg);
+      opacity: 0;
     }
     to {
-      transform: rotate(180deg);
+      transform: rotate(0deg);
+      opacity: 100;
     }
   }
   
   .animated-rotate {
     animation: rotateIn 0.5s ease-in-out;
   }
+ 
+
+  .custom div {
+    border-radius: 1.2rem;  
+    
+    clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+  }
+  
+  .custom div:nth-child(1) {
+    transform: rotate(100deg) translateX(-10px);
+  }
+  
+  .custom div:nth-child(2) {
+    transform: rotate(180deg) translateY(60px);
+  }
+  
+  .custom div:nth-child(3) {
+    transform: rotate(-100deg) translateX(10px);
+  }
+  
+  
+ 
+ 
   
