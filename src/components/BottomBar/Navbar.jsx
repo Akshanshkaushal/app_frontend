@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-scroll";
 import { faHome, faSearch, faUser, faHeart, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FaBookmark } from "react-icons/fa";
+import "./style.css";
 
 const navItems = [
   { name: "Home", icon: faHome },
@@ -23,20 +22,28 @@ const Navbar = () => {
     return (
       <div
         onClick={props.item.name === "Add" ? toggleAddButton : null}
-        className={`flex items-center py-2 text-gray-300 z-50 cursor-pointer ${
+        className={`relative flex items-center py-2 text-gray-300 z-50 cursor-pointer ${
           isOpen && props.item.name === "Add" ? "rotate-45" : ""
         }`}
       >
         <FontAwesomeIcon className="text-2xl" icon={props.item.icon} fixedWidth />
-        {props.item.name === "Add" && isOpen && (
-          <div className="absolute  items-center rotate-180">
-          
-            
-          </div>
-        )}
       </div>
     );
   };
+ 
+const AddButtonContent = () => {
+  return (
+    <div className={`absolute bottom-24 left-16 ${isOpen ? 'animated-rotate' : ''}`}>
+      <div className="flex flex-row">
+        <div className="bg-red-500 h-16 w-16 m-2 rounded-full animate-arc"></div>
+        <div className="bg-green-500 h-16 w-16 m-2 rounded-full animate-arc"></div>
+        <div className="bg-blue-500 h-16 w-16 m-2 rounded-full animate-arc"></div>
+      </div>
+    </div>
+  );
+};
+
+   
 
   return (
     <div className="h-full z-50">
@@ -50,6 +57,7 @@ const Navbar = () => {
           <div className="flex justify-center">
             <div className="h-1 bg-gray-400 w-1/2 rounded-lg mb-2"></div>
           </div>
+          {isOpen && <AddButtonContent />}
         </div>
       </div>
     </div>
