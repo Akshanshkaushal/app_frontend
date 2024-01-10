@@ -1,5 +1,3 @@
-// Header.js
-
 import React from 'react';
 import { FaCog, FaEnvelope } from 'react-icons/fa';  
  

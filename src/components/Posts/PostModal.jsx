@@ -4,17 +4,21 @@ import { useParams, useNavigate } from 'react-router-dom';
 import postData from './Data';
 import './style.css';
 import { useLiked } from '../../Contexts/LikedContext';
-import { dumy } from '../../assets';
+import { dumy, heartimg } from '../../assets';
 import { useSwipeable } from 'react-swipeable';
 import { CSSTransition } from 'react-transition-group';
+import { IoIosArrowBack } from "react-icons/io";
+
 
 const PostPage = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
 
   const [post, setPost] = useState(null);
-  const { likedPosts, setLiked } = useLiked();
-  const [currentSlide, setCurrentSlide] = useState(0); // Track current slide index
+  const { likedPosts, setLiked} = useLiked();
+  const [currentSlide, setCurrentSlide] = useState(0);  
+  const [showHeartAnimation, setShowHeartAnimation] = useState(false);
+   
 
   const handlers = useSwipeable({
     onSwipedLeft: () => handleSlideLeft(),
@@ -34,6 +38,10 @@ const PostPage = () => {
 
   const handleClick = () => {
     setLiked(postId, !likedPosts[postId]);
+    setShowHeartAnimation(true);
+    setTimeout(() => {
+        setShowHeartAnimation(false);
+      }, 1000);
   };
 
   const handleBack = () => {
@@ -41,7 +49,7 @@ const PostPage = () => {
   };
 
   useEffect(() => {
-    // post based on postId
+    // post based on postId--->
     const foundPost = postData.find((p) => String(p.id) === postId);
 
     if (foundPost) {
@@ -68,6 +76,8 @@ const PostPage = () => {
         style={{ background: `url(${post.slides[currentSlide].image}) center/cover`, color: 'red' }}
         onDoubleClick={handleClick}
       >
+            {showHeartAnimation && <img src={heartimg} className="heart-animation" alt="Heart" />} 
+
         <div className='flex flex-row items-center p-4'>
           <img src={post.userUrl} className='w-8 h-8 rounded-full' alt="User Avatar" />
           <div className="ml-2">
@@ -116,7 +126,7 @@ const PostPage = () => {
         </div>
       </div>
       <div className="absolute top-4 left-4 cursor-pointer" onClick={handleBack}>
-        <FaArrowLeft size={24} style={{ color: 'white' }} />
+      <IoIosArrowBack  size={24} style={{ color: 'white' }}  />
       </div>
     </div>
     </CSSTransition>

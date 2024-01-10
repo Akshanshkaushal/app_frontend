@@ -1,5 +1,3 @@
- // Story.jsx
-
 import React from 'react';
 
 const Story = ({ imageUrl, username }) => {

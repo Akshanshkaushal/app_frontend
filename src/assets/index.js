@@ -19,10 +19,12 @@ import user6 from "./images/user6.jpg";
 import user7 from "./images/user7.avif";
 import user8 from "./images/user8.jpeg";
 
+import heartimg from "./images/heart.png";
 export{
     dumy,
     plus,
-    
+    heartimg,
+
     postimg1,
     postimg2,
     postimg3,
