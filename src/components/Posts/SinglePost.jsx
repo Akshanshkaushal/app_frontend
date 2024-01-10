@@ -37,7 +37,7 @@ const SinglePost = ({ post, style }) => {
 
       setTimeout(() => {
         setShowHeartAnimation(false);
-      }, 1000);
+      }, 700);
 
       clickCount = 0;
     }

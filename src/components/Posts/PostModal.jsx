@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import postData from './Data';
 import './style.css';
 import { useLiked } from '../../Contexts/LikedContext';
-import { dumy, heartimg } from '../../assets';
+import { heartimg } from '../../assets';
 import { useSwipeable } from 'react-swipeable';
 import { CSSTransition } from 'react-transition-group';
 import { IoIosArrowBack } from "react-icons/io";
@@ -41,7 +41,7 @@ const PostPage = () => {
     setShowHeartAnimation(true);
     setTimeout(() => {
         setShowHeartAnimation(false);
-      }, 1000);
+      }, 700);
   };
 
   const handleBack = () => {

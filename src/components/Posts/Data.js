@@ -26,7 +26,7 @@ const postData = [
     userUrl: user2,
     slides: [
       {
-        image: postimg3,
+        image: postimg2,
         content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       },
       {
@@ -60,10 +60,10 @@ const postData = [
     userUrl: user4,
     slides: [
       {
-        image: postimg6,
+        image: postimg5,
       },
       {
-        image: postimg5,
+        image: postimg7,
         content: 'Additional content for the second slide.',
       },
     ],
