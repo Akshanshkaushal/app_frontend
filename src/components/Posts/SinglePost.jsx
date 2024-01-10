@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaHeart, FaComment, FaShare } from 'react-icons/fa';
+import { FaHeart, FaComment, FaShare, FaBookmark } from 'react-icons/fa';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
 import { useLiked } from '../../Contexts/LikedContext';
@@ -76,6 +76,9 @@ const SinglePost = ({ post, style }) => {
             <FaShare size={20} />
           </div>
         </div>
+        <div className='absolute  right-5' style={{bottom:"4.5rem"}}>
+          <FaBookmark size={20}    style={{color: "#fafafa"}} />
+          </div>
       </div>
     </div>
   );

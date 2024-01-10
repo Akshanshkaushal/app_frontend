@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaHeart, FaComment, FaShare, FaArrowLeft } from 'react-icons/fa';
+import { FaHeart, FaComment, FaShare, FaArrowLeft, FaBookmark } from 'react-icons/fa';
 import { useParams, useNavigate } from 'react-router-dom';
 import postData from './Data';
 import './style.css';
@@ -26,12 +26,12 @@ const PostPage = () => {
     preventDefaultTouchmoveEvent: true,
   });
 
-  const handleSlideRight = () => {
+  const handleSlideLeft = () => {
     const newIndex = (currentSlide + 1) % post.slides.length;
     setCurrentSlide(newIndex);
   };
 
-  const handleSlideLeft = () => {
+  const handleSlideRight = () => {
     const newIndex = (currentSlide - 1 + post.slides.length) % post.slides.length;
     setCurrentSlide(newIndex);
   };
@@ -79,7 +79,8 @@ const PostPage = () => {
             {showHeartAnimation && <img src={heartimg} className="heart-animation" alt="Heart" />} 
 
         <div className='flex flex-row items-center p-4'>
-          <img src={post.userUrl} className='w-8 h-8 rounded-full' alt="User Avatar" />
+          <img src={post.userUrl} className='w-8 h-8 rounded-full' alt="User Avatar" 
+          />
           <div className="ml-2">
             <div className="text-white font-bold">{post.username}</div>
           </div>
@@ -123,7 +124,11 @@ const PostPage = () => {
           >
             <FaShare size={20} />
           </div>
+        
         </div>
+        <div className='absolute  right-5' style={{bottom:"2.8rem"}}>
+          <FaBookmark size={20}    style={{color: "#fafafa"}} />
+          </div>
       </div>
       <div className="absolute top-4 left-4 cursor-pointer" onClick={handleBack}>
       <IoIosArrowBack  size={24} style={{ color: 'white' }}  />

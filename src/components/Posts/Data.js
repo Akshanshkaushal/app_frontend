@@ -33,7 +33,6 @@ const postData = [
         image: postimg5,
         content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       },
-      ,
       {
         image: postimg7,
         content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',

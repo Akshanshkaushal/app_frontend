@@ -31,7 +31,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    animation: heartBeat 1s ease-out;
+    animation: heartBeat 1s ease-in-out;
   }
   
   @keyframes heartBeat {
