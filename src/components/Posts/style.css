@@ -28,26 +28,37 @@
 }
  
 
-.heart-animation {
-    position: absolute;
-    top: 40%;
-    left: 45%;
-    transform: translate(-50%, -50%);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    animation: heartBeat 1s ease-in-out;
+ .heart-animation {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  animation: heartBeat 1s ease-in-out, fadeOut 1s ease-in-out forwards;
+}
+
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
   }
-  
-  @keyframes heartBeat {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(2.5);
-    }
-    100% {
-      transform: scale(1);
-    }
+  50% {
+    transform: scale(2.5);
   }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+ 
+  100% {
+    opacity: 1;
+  }
+}
+
   

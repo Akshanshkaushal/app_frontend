@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSpring, animated } from 'react-spring';
 import { FaHeart, FaComment, FaShare, FaBookmark } from 'react-icons/fa';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
@@ -6,10 +7,17 @@ import { useLiked } from '../../Contexts/LikedContext';
 import { heartimg } from '../../assets';
 
 const SinglePost = ({ post, style }) => {
-  const { likedPosts, setLiked} = useLiked();
+  const { likedPosts, setLiked } = useLiked();
   const navigate = useNavigate();
   let clickCount = 0;
   const [showHeartAnimation, setShowHeartAnimation] = useState(false);
+
+  const props = useSpring({
+    opacity: 1,
+    translateY: 0,
+    from: { opacity: 0, translateY: -100 },
+    config: { tension: 120, friction: 14 },
+  });
 
   const handleClick = () => {
     clickCount++;
@@ -40,9 +48,12 @@ const SinglePost = ({ post, style }) => {
   };
 
   return (
-    <div className="relative rounded-lg shadow-md overflow-hidden bg-no-repeat bg-center bg-cover w-screen cursor-pointer" style={{ ...style, position: 'relative' }}>
+    <animated.div
+      className="relative rounded-lg shadow-md overflow-hidden bg-no-repeat bg-center bg-cover w-screen cursor-pointer"
+      style={{ ...style, position: 'relative', ...props }}
+    >
       <div className="h-[29rem] bg-no-repeat bg-center bg-cover borderf" style={{ background: `url(${post.slides ? post.slides[0].image : post.image}) center/cover`, color: 'red' }} onClick={handleClick}>
-      {showHeartAnimation && <img src={heartimg} className="heart-animation" alt="Heart" />} 
+        {showHeartAnimation && <img src={heartimg} className="heart-animation" alt="Heart" />}
         <div className='flex flex-row items-center p-4'>
           <img src={post.userUrl} className='w-10 h-10 rounded-full' alt="User Avatar" />
           <div className="ml-2">
@@ -52,14 +63,14 @@ const SinglePost = ({ post, style }) => {
 
         {/* Post Content */}
         <div className='p-8 m-2 text-white'>
-      
+          {/* Add your post content here */}
         </div>
 
         <div className="absolute bottom-16 left-4 flex items-center space-x-4">
           {/* Like */}
           <div onClick={handleClick}>
             <div className={`flex flex-row relative rounded-3xl ${likedPosts[post.id] ? 'bg-red-500 opacity-90' : 'bg-black opacity-10'} w-24 h-10`}>
-                     </div>
+            </div>
             <div className={`flex absolute bottom-2.5 left-3 opacity-100 items-center text-white`}>
               <FaHeart size={20} />
             </div>
@@ -77,10 +88,10 @@ const SinglePost = ({ post, style }) => {
           </div>
         </div>
         <div className='absolute  right-5' style={{bottom:"4.5rem"}}>
-          <FaBookmark size={20}    style={{color: "#fafafa"}} />
-          </div>
+          <FaBookmark size={20} style={{color: "#fafafa"}} />
+        </div>
       </div>
-    </div>
+    </animated.div>
   );
 };
 
