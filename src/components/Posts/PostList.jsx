@@ -4,7 +4,7 @@ import postData from './Data';
  
 const PostList = () => {
   return (
-    <div className="items-center relative bordert">
+    <div className="items-center relative borderf">
       {postData.map((post, index) => (
         <SinglePost key={post.id} post={post} style={{ marginTop: index !== 0 && '-3rem' }} />
       ))}

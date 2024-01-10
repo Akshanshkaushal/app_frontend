@@ -41,7 +41,7 @@ const SinglePost = ({ post, style }) => {
 
   return (
     <div className="relative rounded-lg shadow-md overflow-hidden bg-no-repeat bg-center bg-cover w-screen cursor-pointer" style={{ ...style, position: 'relative' }}>
-      <div className="h-[29rem] bg-no-repeat bg-center bg-cover bordert" style={{ background: `url(${post.slides ? post.slides[0].image : post.image}) center/cover`, color: 'red' }} onClick={handleClick}>
+      <div className="h-[29rem] bg-no-repeat bg-center bg-cover borderf" style={{ background: `url(${post.slides ? post.slides[0].image : post.image}) center/cover`, color: 'red' }} onClick={handleClick}>
       {showHeartAnimation && <img src={heartimg} className="heart-animation" alt="Heart" />} 
         <div className='flex flex-row items-center p-4'>
           <img src={post.userUrl} className='w-10 h-10 rounded-full' alt="User Avatar" />
