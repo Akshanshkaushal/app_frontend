@@ -13,6 +13,7 @@
     from {
       transform: rotate(-180deg);
       opacity: 0;
+      scale:0.5;
     }
     to {
       transform: rotate(0deg);
@@ -23,11 +24,11 @@
 
 
   .animated-rotate {
-    animation: rotateOut 0.25s ease-in-out;
+    animation: rotateOut 0.2s ease-in-out;
   }
 
   .animated-rotateback {
-    animation: rotateIn 0.25s ease-in-out;
+    animation: rotateIn 0.2s ease-in-out;
   }
  
 
