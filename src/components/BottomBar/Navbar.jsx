@@ -44,8 +44,8 @@ const Navbar = () => {
 
   const AddButtonContent = () => {
     return (
-      <div className={`absolute bottom-20 left-20 ${isOpen ? 'animated-rotate' : 'animated-rotateback'}`}>
-        <div className="flex flex-row custom">
+      <div className={`absolute buttonn bottom-20 left-20 ${isOpen ? 'animated-rotate' : 'animated-rotateback'}`}>
+        <div className=" flex flex-row custom">
           <div className="bg-purple-400 h-11 w-16 rounded-t-3xl rounded-b-2xl"></div>
           <div className="bg-red-500 h-11 w-16   rounded-t-3xl rounded-b-2xl"></div>
           <div className="bg-orange-500 h-11 w-16  rounded-t-3xl rounded-b-2xl"></div>

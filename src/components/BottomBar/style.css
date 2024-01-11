@@ -20,6 +20,8 @@
     }
   }
 
+
+
   .animated-rotate {
     animation: rotateOut 0.25s ease-in-out;
   }
@@ -31,23 +33,28 @@
 
   .custom div {
     border-radius: 1.2rem;  
-    
     clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
   }
   
   .custom div:nth-child(1) {
-    transform: rotate(100deg) translateX(-8px) translateY(-15px);
+    transform: rotate(100deg) translateX(-8%) translateY(-40%);
+  
   }
   
   .custom div:nth-child(2) {
-    transform: rotate(180deg) translateY(42px);
+    transform: rotate(180deg) translateY(100%);
+    
   }
   
   .custom div:nth-child(3) {
-    transform: rotate(-100deg) translateX(8px) translateY(-10px);
+    transform: rotate(-100deg) translateX(8%) translateY(-30%);
   }
   
-  
+  .buttonn{
+    display: absolute!important;
+    top:-80%;
+    left:22%;
+  }
  
  
   
