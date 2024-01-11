@@ -26,7 +26,7 @@ const Navbar = () => {
     return (
       <div
         onClick={props.item.name === "Add" ? toggleAddButton : null}
-        className={`relative flex items-center py-2 text-gray-300 z-50 cursor-pointer ${
+        className={`relative flex items-center py-2  z-50 cursor-pointer ${
           isOpen && props.item.name === "Add" ? "hidden" : ""
         } ${props.item.name === "Add" ? "bg-white rounded-full text-black" : ""}`}
         style={{
@@ -59,7 +59,7 @@ const Navbar = () => {
 
   return (
     <div className="h-full z-50">
-      <div className="w-screen items-center inline-block z-50 overflow-x-hidden">
+      <div className="w-full items-center inline-block z-50 overflow-x-hidden">
         <div className="bg-[#111111] borderf w-full h-[4.5rem] flex flex-col justify-end text-gray-100 fixed bottom-0 z-50">
           <div className="bg-[#111111] borderf w-full h-[4.5rem] flex justify-around">
             {navItems.map((item) => (
