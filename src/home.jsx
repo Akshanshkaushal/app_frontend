@@ -3,6 +3,9 @@ import Stories from './components/Stories/Stories';
 import Navbar from './components/BottomBar/Navbar';
 import PostList from './components/Posts/PostList';
 import Header from './components/Header/Header';
+import MovieSearch from './components/Movies/Search';
+ 
+ 
  
 
 function Home() {
@@ -12,6 +15,7 @@ function Home() {
     <Stories/>
      <PostList/>
        <Navbar/>
+      
        </>
 
     

@@ -1,0 +1,17 @@
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .bg-white {
+    /* Adjust the width as needed */
+    width: calc(50% - 8px);
+    box-sizing: border-box;
+  }
+  
+  body{
+    overflow-x: hidden;
+  }
+  /* Add other styles as needed */
+  

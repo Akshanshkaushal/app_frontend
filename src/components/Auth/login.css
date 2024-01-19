@@ -1,0 +1,26 @@
+.login-container{
+align-items: center;
+text-align: center;
+    width:38vh !important;
+    margin: auto;
+  
+
+}
+.login-form-container{
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    margin-top: 10vh;
+}
+.group1{
+    margin-top: 3rem;
+}
+
+.btn{
+    margin-top: 1rem;
+    height: 3rem;
+    width: 10rem;
+    border-color: white;
+    font-weight: bolder;
+    background-color: antiquewhite;
+}
