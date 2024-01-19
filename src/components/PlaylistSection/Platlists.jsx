@@ -86,8 +86,8 @@ export default function Platlists() {
   return (
     <div className=' overflow-x-hidden'> 
     <div className='flex flex-col h-screen '>
-     <div className='flex flex-row gap-28 m-2 mb-12'>
-     <IoIosArrowBack size={20} className='text-white' onClick={() => navigate("/home")}/>
+     <div className='flex flex-row justify-center items-center m-2 mb-12'>
+     <IoIosArrowBack size={20} className='text-white absolute left-0 mx-2' onClick={() => navigate("/home")}/>
       <div className='text-white font-bold text-xl'>Collections</div>
      </div>
 
