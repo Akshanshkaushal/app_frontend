@@ -169,16 +169,16 @@ const TvDetails = ({playlists}) => {
 
   const SeriesDetails = () => {
     return (
-      <div className='flex flex-col text-white gap-12 mx-4'>
+      <div className='flex flex-col text-white gap-12 '>
         <div className='flex flex-row justify-between mt-4 '>
-          <div className='flex flex-row gap-4 justify-center items-center'>
+          <div className='flex flex-row gap-4 justify-center items-center mx-4'>
             <Link to="/moviesearch">
               <FaArrowLeft />
             </Link>
             <div>{data?.name}</div>
           </div>
 
-          <div className='ml-auto flex flex-row gap-4'>
+          <div className='ml-auto flex flex-row gap-4 mx-4'>
             <div>
               <FaSearch />
             </div>
@@ -189,13 +189,13 @@ const TvDetails = ({playlists}) => {
         </div>
 
         <div className='h-[15rem]' style={{ background: `url(${imageUrl}) center/contain no-repeat`, color: 'red' }}></div>
-        <div>
+        <div className='mx-4'>
         <Link to={`/tv/${id}/seasons`}>
           <button className='bg-blue-500 p-2 rounded-lg'>Watch All</button>
           </Link>
  
         </div>
-        <div>
+        <div className='mx-4'>
           <div className='text-lg font-bold'>{data?.name}</div>
           <div>{data?.overview}</div>
         </div>
@@ -220,7 +220,7 @@ const TvDetails = ({playlists}) => {
     </div>
 
     <div>
-          <button className='bg-blue-500 p-2 rounded-lg' onClick={handleAddToPlaylistClick}>Add to Playlist</button>
+          <button className='bg-blue-500 p-2 rounded-lg mx-4' onClick={handleAddToPlaylistClick}>Add to Playlist</button>
         </div>
 
         <div className='mt-4 h-[15rem]'>
@@ -229,7 +229,7 @@ const TvDetails = ({playlists}) => {
           
         </div>
 
-        <div className='mt-4'>
+        <div className='mt-4 mx-4'>
       <div className='text-lg font-bold'>Genres</div>
       <div className='flex flex-row'>
         {data?.genres.map(genre => (

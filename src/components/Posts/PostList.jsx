@@ -10,7 +10,12 @@ const PostList = () => {
       try {
         const response = await fetch(`https://techsnap-pe2v.onrender.com/posts/feed?page=${page}`);
         const data = await response.json();
+        if(data.results){
         setPosts((prevPosts) => [...prevPosts, ...data.results]);
+      }
+      else{
+        console.log("push more data in api")
+      }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -23,12 +28,29 @@ const PostList = () => {
     setPage((prevPage) => prevPage + 1);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+ 
+      if (
+        window.innerHeight + document.documentElement.scrollTop ===
+        document.documentElement.offsetHeight
+      ) {
+        loadMorePosts();
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+ 
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);  
+
   return (
-    <div className="items-center relative borderf">
-      {posts.map((post) => (
+    <div className="items-center relative borderf overflow-x-hidden">
+      {posts &&
+        posts.map((post) => (
         <SinglePost key={post.id} post={post} />
       ))}
-      <button onClick={loadMorePosts} className='text-white'>Load More</button>
     </div>
   );
 };

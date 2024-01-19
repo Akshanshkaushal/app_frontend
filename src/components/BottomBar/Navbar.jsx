@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faSearch, faUser, faHeart, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faSearch, faUser, faHeart, faPlus, faTimes, faList } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 const navItems = [
-  { name: "Home", icon: faHome, path: "/home" },
+  { name: "Playlist", icon: faList, path: "/playlist" },
   { name: "Search", icon: faSearch, path: "/moviesearch" },
   { name: "Add", icon: faPlus},
   { name: "Likes", icon: faHeart, path: "/home" },
@@ -13,6 +14,8 @@ const navItems = [
 ];
 
 const Navbar = () => {
+
+  const Navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAddButton = () => {
@@ -51,8 +54,11 @@ const Navbar = () => {
     return (
       <div className={`absolute buttonn  bottom-20 left-20 ${isOpen ? 'animated-rotate' : 'animated-rotateback'}`}>
         <div className=" flex flex-row custom">
-          <div className="bg-purple-400 h-11 w-16 rounded-t-3xl rounded-b-2xl"></div>
-          <div className="bg-red-500 h-11 w-16 rounded-t-3xl rounded-b-2xl"></div>
+    
+          <div className="bg-purple-400 h-11 w-16 rounded-t-3xl rounded-b-2xl text-white"></div>
+          
+          <div className="bg-red-500 h-11 w-16 rounded-t-3xl rounded-b-2xl text-white flex justify-center items-center" onClick={()=>Navigate("/home")}><FaHome size={20} className="text-white rotate-180"/></div>
+           
           <div className="bg-orange-500 h-11 w-16  rounded-t-3xl rounded-b-2xl"></div>
         </div>
         <button className="absolute top-2 left-[4.8rem] p-2" onClick={closeAddButton}>

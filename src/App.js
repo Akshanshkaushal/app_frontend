@@ -8,11 +8,12 @@ import SignUp from './components/Auth/SignUp';
 import Profile from './components/Profile/Profile';
 import MovieSearch from './components/Movies/Search';
 import Details from './components/Movies/Details';
-import PlaylistPage from './components/Profile/PlayList/PlayList';
+import PlaylistPage from './components/PlaylistSection/PlayList/PlayList';
 import UserSearch from './components/Profile/User_Search/UserSearch';
 import ProfileDetails from './components/Profile/User_Search/ProfileDetails';
 import SeasonDetails from './components/Movies/Series/Seasons';
 import StoryDetails from './components/Stories/StoryDetail';
+import Platlists from './components/PlaylistSection/Platlists';
  
 const isAuthenticated = () => {
   const token = localStorage.getItem('jwttoken'); 
@@ -43,6 +44,7 @@ function App() {
           <Route path="/profiledetails/:userId" element={<ProfileDetails />} />
           <Route path="/tv/:id/seasons" element={<SeasonDetails  />} />
           <Route path="/playlist/:type" element={<PlaylistPage />} />
+          <Route path="/playlist" element={<Platlists />} />
           <Route
             path="/profile" element={<Profile />} 
           />

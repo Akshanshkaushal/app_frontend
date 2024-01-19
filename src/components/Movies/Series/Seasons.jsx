@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { FaArrowLeft } from 'react-icons/fa';
+import { IoIosArrowBack, IoIosSkipBackward } from 'react-icons/io';
 
 const SeasonDetails = () => {
   const [seasonsData, setSeasonsData] = useState(null);
@@ -77,14 +79,17 @@ const SeasonDetails = () => {
   
 
   return (
-    <div className='text-white overflow-x-hidden'>
+    <div className='text-white overflow-x-hidden flex flex-col gap-2'>
+      <Link to="/moviesearch">
+              <IoIosArrowBack />
+            </Link>
       {currentSeason && (
         <>
-          <h2>Season Details for {currentSeason.name}</h2>
+          <h2 className='mx-2'>{currentSeason.name}</h2>
           <Slider {...settings}>
             {currentSeason.episodes.map((episode) => (
               <div key={episode.id}>
-                <h3>{episode.name}</h3>
+                <h3 className='mx-2'>{episode.name}</h3>
                 <div
                   className='h-[15rem]'
                   style={{
@@ -92,9 +97,9 @@ const SeasonDetails = () => {
                     color: 'red',
                   }}
                 ></div>
-                <p>{episode.overview}</p>
+                <p className='m-2'>{episode.overview}</p>
                 <button
-                  className='bg-blue-500 p-2 rounded-full'
+                  className='bg-blue-500 p-2 rounded-2xl m-2'
                   onClick={() => handleTrackButtonClick(episode)}
                 >
                   Track
@@ -106,7 +111,7 @@ const SeasonDetails = () => {
       )}
 
       {seasonsData && (
-        <div>
+        <div className='m-2'>
           <h3>Seasons</h3>
           <ul>
             <div className='grid grid-cols-3 gap-2'>
