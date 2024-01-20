@@ -14,6 +14,11 @@ import ProfileDetails from './components/Profile/User_Search/ProfileDetails';
 import SeasonDetails from './components/Movies/Series/Seasons';
 import StoryDetails from './components/Stories/StoryDetail';
 import Platlists from './components/PlaylistSection/Platlists';
+import Setting from './components/Profile/Settings/Setting';
+import Account from './components/Profile/Settings/Account';
+import Community from './components/Profile/Settings/guide/community';
+import Personel from './components/Profile/Settings/guide/personel';
+ 
  
 const isAuthenticated = () => {
   const token = localStorage.getItem('jwttoken'); 
@@ -47,6 +52,19 @@ function App() {
           <Route path="/playlist" element={<Platlists />} />
           <Route
             path="/profile" element={<Profile />} 
+          />
+           <Route
+            path="/comunity_guide" element={<Community/>} 
+          />
+           <Route
+            path="/personel_guide" element={<Personel/>} 
+          />
+          
+               <Route
+            path="/settings" element={<Setting/>} 
+          />
+             <Route
+            path="/account" element={<Account />} 
           />
           <Route
             path="/post/:postId" element={<PostPage/>}

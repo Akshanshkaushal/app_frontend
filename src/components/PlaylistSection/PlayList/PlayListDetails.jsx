@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
+import { dumy } from '../../../assets';
 
 const MovieCard = ({ movie, id }) => {
   const navigate = useNavigate();
@@ -28,8 +29,10 @@ const TrackCard = ({ track, id }) => {
 
   return (
     <div
-      className=" p-4 m-2 shadow-md rounded-md"
+      className=" p-4 m-2 shadow-md rounded-md h-[13rem]"
       onClick={handleClick}
+      
+      style={{ background: `url(${dumy}) center/cover`, color: 'white' }}
     >
       <h3 className="text-lg font-bold mb-2">Episode {track.episode}</h3>
       <h3 className="text-lg font-bold mb-2">{track.title}</h3>

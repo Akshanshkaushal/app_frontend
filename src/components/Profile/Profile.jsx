@@ -2,21 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import "./profile.css";
 import { dumy } from '../../assets';
-import { FaPlus, FaEllipsisV } from 'react-icons/fa';
+import { FaPlus, FaEllipsisV, FaCross, FaCut, FaRing } from 'react-icons/fa';
 import Navbar from '../BottomBar/Navbar';
- 
- 
-
-
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [profileData, setProfileData] = useState(null);
   const [data, setData] = useState(null);
-   const [isFollowing, setIsFollowing] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const navigate = useNavigate();
 
   const jwttoken = localStorage.getItem('jwttoken');
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +25,7 @@ const Profile = () => {
         });
         const data = await response.json();
         setData(data);
-        console.log(data.data.playlists)
+        console.log(data.data.playlists);
         setProfileData(data.data);
       } catch (error) {
         console.error('Error fetching profile data:', error);
@@ -57,7 +54,9 @@ const Profile = () => {
     }
   };
 
-
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
 
   return (
     <div>
@@ -65,15 +64,19 @@ const Profile = () => {
         <section className="top-bar flex flex-row m-2">
           <div>profile</div>
           <div className='flex flex-row ml-auto justify-between gap-6 items-center'>
-            <FaPlus />
-            <FaEllipsisV />
+            <FaRing onClick={() => navigate("/settings")} />
+            <FaEllipsisV onClick={toggleDropdown} />
           </div>
         </section>
+ 
         <section className="stats">
           <div className="stats__img-holder" style={{ background: `url(${profileData?.profile_pic || dumy}) center/cover`, color: 'red' }}>
           </div>
           <div className="stats__data">
-         
+            <div className="stats__data__point">
+              <div className="stats__data__point__value">{profileData?.posts || 0}</div>
+              <div className="stats__data__point__description">Posts</div>
+            </div>
             <div className="stats__data__point">
               <div className="stats__data__point__value">{profileData?.followers || 0} </div>
               <div className="stats__data__point__description">Followers</div>
@@ -96,7 +99,6 @@ const Profile = () => {
           <Link to="/usersearch">
             <h2 className="decription__title">User Search</h2>
           </Link>
-      
         </section>
         <section className="stories">
           {/* ... (stories section) ... */}
@@ -113,11 +115,30 @@ const Profile = () => {
           </button>
     
         </section>
-  
+
+        {showDropdown && (
+          <div className="dropdown absolute customx bottom-12 pb-16 bg-gray-800 w-full p-4">
+          <div className='h-[2rem] w-full rounded-3xl flex flex-row justify-center items-center gap-4 mx-2'>
+<div className='w-1/3 h-[0.5rem] bg-black rounded-3xl'>
+          </div>
+          
+          </div>
+          <div className='bg-white w-full opacity-50 h-[0.1rem] mb-4'></div>
+
+          <div className='flex flex-col gap-4'>
+            <button onClick={() => console.log('Dropdown Item 1 clicked')}>Dropdown Item 1</button>
+            <button onClick={() => console.log('Dropdown Item 2 clicked')}>Dropdown Item 2</button>
+            <button onClick={() => console.log('Dropdown Item 1 clicked')}>Dropdown Item 1</button>
+            <button onClick={() => console.log('Dropdown Item 2 clicked')}>Dropdown Item 2</button>
+            <button onClick={() => console.log('Dropdown Item 1 clicked')}>Dropdown Item 1</button>
+            <button onClick={() => console.log('Dropdown Item 2 clicked')}>Dropdown Item 2</button>
+            <button onClick={() => console.log('Dropdown Item 2 clicked')}>Dropdown Item 2</button>
+            <button onClick={() => console.log('Dropdown Item 2 clicked')}>Dropdown Item 2</button>
+          </div>
+          </div>
+        )}
         <Navbar />
       </div>
-
-
     </div>
   );
 };
