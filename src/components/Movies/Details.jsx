@@ -34,15 +34,11 @@ const Details = () => {
 
         const data = await response.json();
         setDetails(data.content_details);
-        console.log(data)
+        console.log(data.content_details.likes)
 
-        // Set liked state from localStorage
-        const storedLikedState = localStorage.getItem(`liked_${id}`);
-        const storedSeenState = localStorage.getItem(`Seen_${id}`);
-        const storedWatchState = localStorage.getItem(`Watch_${id}`);
-        setLiked(storedLikedState === 'true');
-        setSeen(storedSeenState === 'true');
-        setWatch(storedWatchState === 'true');
+        setLiked(data.content_details.likes > 0);
+        setSeen(data.content_details.seen);
+        setWatch(data.content_details.must);
       } catch (error) {
         console.error('Error fetching details:', error);
       }

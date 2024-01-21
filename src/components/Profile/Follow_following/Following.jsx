@@ -47,7 +47,8 @@ export default function Following() {
               className="w-full h-[10rem] object-cover"
             />
           )}
-        </div>          </Link>
+        </div>
+         </Link>
         ))}
       </ul>
     </div>

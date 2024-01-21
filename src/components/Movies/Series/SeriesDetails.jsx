@@ -5,6 +5,7 @@ import AddToPlaylistModal from '../AddtoPlaylistModal';
 
 const TvDetails = ({playlists}) => {
   const { id, type } = useParams();
+  const [details, setDetails] = useState(null);
   const [data, setData] = useState(null);
   const [liked, setLiked] = useState(false);
   const [Seen, setSeen] = useState(false);
@@ -42,13 +43,12 @@ const TvDetails = ({playlists}) => {
         console.log(responseData);
         setData(responseData.data);
 
-        // Set liked state from localStorage
-        const storedLikedState = localStorage.getItem(`liked_${id}`);
-        const storedSeenState = localStorage.getItem(`seen_${id}`);
-        const storedWatchState = localStorage.getItem(`watch_${id}`);
-        setLiked(storedLikedState === 'true');
-        setSeen(storedSeenState === 'true');
-        setWatch(storedWatchState === 'true');
+ 
+        console.log(responseData.data.likes)
+
+        setLiked(responseData.data.likes > 0);
+        setSeen(responseData.data.seen);
+        setWatch(responseData.data.must);
       } catch (error) {
         console.error('Error fetching details:', error);
       }
@@ -77,8 +77,7 @@ const TvDetails = ({playlists}) => {
       }
 
       setLiked(true);
-      // Store liked state in localStorage
-      localStorage.setItem(`liked_${id}`, 'true');
+ 
     } catch (error) {
       console.error('Error liking movie:', error);
     }
@@ -104,8 +103,7 @@ const TvDetails = ({playlists}) => {
       }
 
       setLiked(false);
-      // Store liked state in localStorage
-      localStorage.setItem(`liked_${id}`, 'false');
+ 
     } catch (error) {
       console.error('Error disliking movie:', error);
     }
@@ -131,8 +129,7 @@ const TvDetails = ({playlists}) => {
       }
 
       setSeen(true);
-      // Store seen state in localStorage
-      localStorage.setItem(`seen_${id}`, 'true');
+ 
     } catch (error) {
       console.error('Error marking movie as seen:', error);
     }
@@ -158,8 +155,7 @@ const TvDetails = ({playlists}) => {
       }
 
       setWatch(true);
-      // Store watch state in localStorage
-      localStorage.setItem(`watch_${id}`, 'true');
+ 
     } catch (error) {
       console.error('Error adding movie to watchlist:', error);
     }

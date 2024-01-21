@@ -48,7 +48,7 @@ console.log(data)
       <div className="mb-4">
            <div className='flex flex-row justify-center mb-4  items-center bg-gray-800 w-full h-[4rem]'>
     <IoIosArrowBack size={20} className='text-white absolute left-0 mx-2' onClick={()=>navigate("/home")}/>
-       <h3 className="text-3xl font-bold text-white ">Trending</h3>
+       <h3 className="text-3xl font-bold text-white ">Timeline</h3>
        </div>
       <div className='flex flex-row justify-center text-2xl mb-6 items-center gap-6 w-full'>
       <button
