@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { dumy } from '../../assets';
 import "./Trending.css";
+import Navbar from './Navbar';
 
 export default function Trending() {
   const [movies, setMovies] = useState([]);
@@ -130,6 +131,7 @@ export default function Trending() {
 
 
 </div>  
+<Navbar/>
     </div>
   );
 }
