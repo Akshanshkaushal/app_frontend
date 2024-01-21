@@ -8,8 +8,8 @@ body {
  
 
 body {
-  --sb-track-color:  #111111;
-  --sb-thumb-color:  #111111;
+  --sb-track-color:   #1a202c;
+  --sb-thumb-color:   #1a202c;
   --sb-size: 1px;
 
   scrollbar-color: var(--sb-thumb-color) 
