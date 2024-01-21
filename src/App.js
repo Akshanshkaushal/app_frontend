@@ -18,6 +18,10 @@ import Setting from './components/Profile/Settings/Setting';
 import Account from './components/Profile/Settings/Account';
 import Community from './components/Profile/Settings/guide/community';
 import Personel from './components/Profile/Settings/guide/personel';
+import Trending from './components/BottomBar/Trending';
+import Timeline from './components/BottomBar/Timeline';
+import Follow from './components/Profile/Follow_following/Follow';
+import Following from './components/Profile/Follow_following/Following';
  
  
 const isAuthenticated = () => {
@@ -53,6 +57,12 @@ function App() {
           <Route
             path="/profile" element={<Profile />} 
           />
+               <Route
+            path="/follow" element={<Follow />} 
+          />
+               <Route
+            path="/following" element={<Following />} 
+          />
            <Route
             path="/comunity_guide" element={<Community/>} 
           />
@@ -73,6 +83,13 @@ function App() {
             path="/home"
             element={<PrivateRoute element={<Home />} path="/home" />}
           />
+              <Route
+            path="/trending" element={<Trending />} 
+          />
+              <Route
+            path="/timeline" element={<Timeline />} 
+          />
+          
         </Routes>
       </LikedProvider>
     </Router>

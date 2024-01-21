@@ -78,11 +78,11 @@ const Profile = () => {
               <div className="stats__data__point__description">Posts</div>
             </div>
             <div className="stats__data__point">
-              <div className="stats__data__point__value">{profileData?.followers || 0} </div>
+              <div className="stats__data__point__value" onClick={() => navigate("/follow")} >{profileData?.followers || 0} </div>
               <div className="stats__data__point__description">Followers</div>
             </div>
             <div className="stats__data__point">
-              <div className="stats__data__point__value">{profileData?.following || 0}</div>
+              <div className="stats__data__point__value" onClick={() => navigate("/following")} >{profileData?.following || 0}</div>
               <div className="stats__data__point__description">Following</div>
             </div>
           </div>

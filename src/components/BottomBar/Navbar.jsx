@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faSearch, faUser, faHeart, faPlus, faTimes, faList } from "@fortawesome/free-solid-svg-icons";
+import { RiTimeLine } from "react-icons/ri";
+
+import { FcTimeline } from "react-icons/fc";
 import "./style.css";
+
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { FaHome } from "react-icons/fa";
+import { FaFire, FaHome, FaTimesCircle } from "react-icons/fa";
 
 const navItems = [
   { name: "Playlist", icon: faList, path: "/playlist" },
@@ -55,11 +59,11 @@ const Navbar = () => {
       <div className={`absolute buttonn  bottom-20 left-20 ${isOpen ? 'animated-rotate' : 'animated-rotateback'}`}>
         <div className=" flex flex-row custom">
     
-          <div className="bg-purple-400 h-11 w-16 rounded-t-3xl rounded-b-2xl text-white"></div>
+          <div className="bg-purple-400 h-11 w-16 rounded-t-3xl rounded-b-2xl text-white" onClick={()=>Navigate("/trending")}><FaFire size={20} className="text-white rotate-60 absolute top-3 left-5"/></div>
           
           <div className="bg-red-500 h-11 w-16 rounded-t-3xl rounded-b-2xl text-white flex justify-center items-center" onClick={()=>Navigate("/home")}><FaHome size={20} className="text-white rotate-180"/></div>
            
-          <div className="bg-orange-500 h-11 w-16  rounded-t-3xl rounded-b-2xl"></div>
+          <div className="bg-orange-500 h-11 w-16  rounded-t-3xl rounded-b-2xl relative" onClick={()=>Navigate("/timeline")}><RiTimeLine size={20} className="text-white rotate-0 absolute top-3 left-5 "/></div>
         </div>
         <button className="absolute top-2 left-[4.8rem] p-2" onClick={closeAddButton}>
           <FontAwesomeIcon className="text-2xl" icon={faTimes} fixedWidth />
