@@ -51,7 +51,7 @@ const MovieSearch = () => {
 
   return (
     <div className="bg-gray-900 h-screen text-white py-4">
-      <h1 className="text-center  text-xl mb-8">Movie and Web Series Search</h1>
+      <h1 className="text-center  text-xl mb-8">Search</h1>
       <form className="text-center mb-8">
         <input
           type="text"

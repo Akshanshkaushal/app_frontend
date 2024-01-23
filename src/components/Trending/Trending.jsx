@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { dumy } from '../../assets';
 import "./Trending.css";
-import Navbar from './Navbar';
+import Navbar from '../BottomBar/Navbar';
 
 export default function Trending() {
   const [movies, setMovies] = useState([]);
@@ -87,8 +87,10 @@ export default function Trending() {
 
 
       <div className='flex flex-row text-gray-200 gap-2 mx-4 mb-2'> 
+      <div className='flex flex-row justify-center items-center' onClick={() => navigate("/heading")} >
       <div>popular tv shows</div>
       <IoIosArrowForward size={20} className='text-white mx-2' onClick={() => navigate("/home")} />
+      </div>
             </div>
       <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
   {movies.map((item) => (
@@ -107,7 +109,7 @@ export default function Trending() {
 
 
 <div className='flex flex-row text-gray-200 gap-2 mx-4 mb-2'> 
-      <div>popular tv shows</div>
+      <div>popular movies</div>
       <IoIosArrowForward size={20} className='text-white mx-2 ' onClick={() => navigate("/home")} />
             </div>
       <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 

@@ -18,10 +18,12 @@ import Setting from './components/Profile/Settings/Setting';
 import Account from './components/Profile/Settings/Account';
 import Community from './components/Profile/Settings/guide/community';
 import Personel from './components/Profile/Settings/guide/personel';
-import Trending from './components/BottomBar/Trending';
-import Timeline from './components/BottomBar/Timeline';
+import Trending from './components/Trending/Trending';
+import Timeline from './components/Timeline/Timeline';
 import Follow from './components/Profile/Follow_following/Follow';
 import Following from './components/Profile/Follow_following/Following';
+import Heading from './components/Trending/Heading';
+import TimelineDetail from './components/Timeline/TimelineDetail';
  
  
 const isAuthenticated = () => {
@@ -54,11 +56,15 @@ function App() {
           <Route path="/tv/:id/seasons" element={<SeasonDetails  />} />
           <Route path="/playlist/:type" element={<PlaylistPage />} />
           <Route path="/playlist" element={<Platlists />} />
+          <Route path="/heading" element={<Heading />} />
           <Route
             path="/profile" element={<Profile />} 
           />
                <Route
             path="/follow" element={<Follow />} 
+          />
+                <Route
+            path="/timelinedetail" element={<TimelineDetail />} 
           />
                <Route
             path="/following" element={<Following />} 
