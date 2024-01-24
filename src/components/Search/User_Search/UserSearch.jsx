@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../../BottomBar/Navbar';
+import { FaSearch } from 'react-icons/fa';
+import { dumy } from '../../../assets';
 
 const UserSearch = () => {
   const [query, setQuery] = useState('');
@@ -38,16 +40,18 @@ const UserSearch = () => {
     return results.map((result) => (
       
       <Link to={`/profiledetails/${result.id}`} key={result.id}>
-        <div className="flex flex-row gap-2 justify-center items-center rounded-full h-[4rem]">
-          <p className="text-white">{result.username}</p>
-          <p className="text-white">{result.email}</p>
-          {result.profile_pic && (
+        <div  className="relative p-4 border border-gray-700 mb-2 rounded-md h-[15rem]">
+      <div className=' p-2 flex flex-col justify-center items-center gap-2'>
             <img
-              src={result.profile_pic}
+              src={result?.profile_pic || dumy}
               alt={result.username}
-              className="w-full h-[10rem] object-cover"
+              className="w-[5.5rem] h-[5rem] object-cover rounded-lg"
             />
-          )}
+ 
+          <p className="text-white">{result.username}</p>
+          <p className="text-white">{result.username}</p>
+         <div className='border border-red-500 rounded-lg text-red-400 px-1'> <button >Follow</button> </div>
+        </div>
         </div>
       </Link>
      
@@ -55,21 +59,24 @@ const UserSearch = () => {
   };
 
   return (
-    <div className="bg-gray-900 h-screen text-white py-4">
-      <h1 className="text-center text-2xl mb-8">User Search</h1>
-      <form className="text-center mb-8">
- 
-        <input
-          type="text"
-          id="query"
-          name="query"
-          value={query}
-          onChange={handleInputChange}
-          required
-          className="bg-gray-800 text-white p-2 rounded-md w-3/4"
-        />
+    <div className="bg-gray-900  text-white  ">
+       <form className="text-center ">
+      <div className="relative flex items-center gap-2 mt-2 pb-4 justify-center">
+          <input
+            type="text"
+            placeholder="Search (ex: Ramesh)"
+            className=" p-2 pl-8 rounded-lg text-gray-300 bg-gray-800 h-[2.5rem] "
+            style={{ width: '90%' }}
+            value={query}
+            onChange={handleInputChange}
+          />
+          <FaSearch className="absolute left-8 cursor-pointer text-gray-400" />
+        </div>
+      
+      <h1 className='text-gray-200 font-bold text-2xl flex justify-start items-start mx-12 '>Users With Similar Interests</h1>
+      
         {showResults && 
-        <div className="grid grid-cols-1">
+        <div className="grid grid-cols-3 gap-2 mt-16">    
         {renderResults()}
         </div>}
       </form>

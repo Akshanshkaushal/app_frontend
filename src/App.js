@@ -6,11 +6,11 @@ import { LikedProvider } from './Contexts/LikedContext';
 import Login from './components/Auth/Login';
 import SignUp from './components/Auth/SignUp';
 import Profile from './components/Profile/Profile';
-import MovieSearch from './components/Movies/Search';
+import MovieSearch from './components/Search/Search';
 import Details from './components/Movies/Details';
 import PlaylistPage from './components/PlaylistSection/PlayList/PlayList';
-import UserSearch from './components/Profile/User_Search/UserSearch';
-import ProfileDetails from './components/Profile/User_Search/ProfileDetails';
+import UserSearch from './components/Search/User_Search/UserSearch';
+import ProfileDetails from './components/Search/User_Search/ProfileDetails';
 import SeasonDetails from './components/Movies/Series/Seasons';
 import StoryDetails from './components/Stories/StoryDetail';
 import Platlists from './components/PlaylistSection/Platlists';
@@ -24,6 +24,7 @@ import Follow from './components/Profile/Follow_following/Follow';
 import Following from './components/Profile/Follow_following/Following';
 import Heading from './components/Trending/Heading';
 import TimelineDetail from './components/Timeline/TimelineDetail';
+import SearchMain from './components/Search/SearchMain';
  
  
 const isAuthenticated = () => {
@@ -49,6 +50,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/moviesearch" element={<MovieSearch />} />
+          <Route path="/search" element={<SearchMain />} />
           <Route path="/usersearch" element={<UserSearch />} />
           <Route path="/details/:type/:id" element={<Details />} />
           <Route path="/story/:id" element={<StoryDetails/>} />

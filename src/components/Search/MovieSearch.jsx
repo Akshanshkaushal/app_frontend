@@ -1,33 +1,31 @@
- // MovieSearch.js
+// MovieResults.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from '../BottomBar/Navbar';
+import { FaSearch } from 'react-icons/fa';
 
-const MovieSearch = () => {
-  const [query, setQuery] = useState('');
+const MovieResults = ({ query, setQuery }) => {
   const [results, setResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const jwttoken = localStorage.getItem('jwttoken');
 
-  const handleInputChange = async (e) => {
-    const newQuery = e.target.value;
+  const handleMovieSearch = async (newQuery) => {
     setQuery(newQuery);
 
     if (newQuery.trim() !== '') {
       try {
         const response = await axios.get(
-          `https://techsnap-pe2v.onrender.com/movies/search/?query=${newQuery}`,{
+          `https://techsnap-pe2v.onrender.com/movies/search/?query=${newQuery}`,
+          {
             headers: {
               Authorization: `Token ${jwttoken}`,
-            }
+            },
           }
         );
         setResults(response.data.results);
-   
         setShowResults(true);
       } catch (error) {
-        console.error('Error fetching results:', error);
+        console.error('Error fetching movie results:', error);
       }
     } else {
       setShowResults(false);
@@ -50,29 +48,31 @@ const MovieSearch = () => {
   };
 
   return (
-    <div className="bg-gray-900 h-screen text-white py-4">
-      <h1 className="text-center  text-xl mb-8">Search</h1>
-      <form className="text-center mb-8">
-        <input
-          type="text"
-          id="query"
-          name="query"
-          value={query}
-          onChange={handleInputChange}
-          required
-          className="bg-gray-800 text-white p-2 rounded-xl w-3/4"
-        />
+    <div>
+      <form className="text-center ">
+        <div className="relative flex items-center  gap-2 mt-2 pb-4   justify-center">
+          <input
+            type="text"
+            placeholder="Search"
+            className=" p-2 pl-8 rounded-lg text-gray-300 bg-gray-800 h-[2.5rem] "
+            style={{ width: '90%' }}
+            value={query}
+            onChange={(e) => handleMovieSearch(e.target.value)}
+          />
+          <FaSearch className="absolute left-8 cursor-pointer text-gray-400" />
+        </div>
+
+        <h1 className='text-gray-200 font-bold text-2xl flex justify-start items-start mx-12 '>Movies</h1>
+
         {showResults && (
-          <div className="grid grid-cols-2 mt-6 gap-2">
+          <div className="grid grid-cols-3 mt-32 gap-2">
             {/* cards */}
             {renderResults()}
           </div>
         )}
       </form>
-
-      <Navbar/>
     </div>
   );
 };
 
-export default MovieSearch;
+export default MovieResults;

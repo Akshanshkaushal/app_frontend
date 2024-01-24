@@ -1,0 +1,21 @@
+
+.scrollb {
+    --sb-track-color:   #1a202c;
+    --sb-thumb-color:   #1a202c;
+    --sb-size: 1px;
+  
+    scrollbar-color: var(--sb-thumb-color) 
+                     var(--sb-track-color);
+  }
+  
+  .scrollb::-webkit-scrollbar {
+    width: var(--sb-size) 
+  }
+  
+  .scrollb::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+  }
+  
+  .scrollb::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    }

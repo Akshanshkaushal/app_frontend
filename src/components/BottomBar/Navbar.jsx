@@ -11,7 +11,7 @@ import { FaFire, FaHome, FaTimesCircle } from "react-icons/fa";
 
 const navItems = [
   { name: "Playlist", icon: faList, path: "/playlist" },
-  { name: "Search", icon: faSearch, path: "/moviesearch" },
+  { name: "Search", icon: faSearch, path: "/search" },
   { name: "Add", icon: faPlus},
   { name: "Likes", icon: faHeart, path: "/home" },
   { name: "Profile", icon: faUser, path: "/profile" },
