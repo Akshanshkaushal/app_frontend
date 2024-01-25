@@ -153,6 +153,7 @@ console.log(activeTab)
         <IoIosArrowBack size={20} className='text-white absolute left-0 mx-2' onClick={() => navigate("/playlist")} />
         <h3 className="text-3xl font-bold mx-8">{playlistData?.title || "Tracked"}</h3>
       </div>
+      {type !== 'Tracking'  && (
       <div className='flex flex-row  text-2xl font-bold mb-6   gap-6 w-full'>
         <div className='flex flex-col justify-center items-center w-1/2'>
           <button
@@ -173,18 +174,20 @@ console.log(activeTab)
           {activeTab === 'tv' && <div className="h-1 bg-green-500 w-full"></div>}
         </div>
       </div>
+      )
+      }
 
       {type === 'Tracking'  && (
         <div className='flex flex-row justify-center items-center gap-4 '>
      
           <div  onClick={() => handleTabChange('continueWatching')}
-        className={`bg-gray-700 px-1 text-white cursor-pointer ${activeTab === 'continueWatching' ? 'bg-gray-700' : ''}`}>continueWatching</div>
+        className={`  px-1 text-white cursor-pointer ${activeTab === 'continueWatching' ? 'bg-green-500' : 'bg-gray-700'}`}>continueWatching</div>
       
       <div  onClick={() => handleTabChange('Havent started')}
-        className={`bg-gray-700 px-1 text-white  cursor-pointer ${activeTab === 'continueWatching' ? 'bg-gray-700' : ''}`}>Havent started</div>
+        className={` px-1 text-white  cursor-pointer ${activeTab === 'Havent started' ?  'bg-green-500' : 'bg-gray-700'}`}>Havent started</div>
 
 <div  onClick={() => handleTabChange('Comming soon')}
-        className={`bg-gray-700 px-1 text-white  cursor-pointer ${activeTab === 'continueWatching' ? 'bg-gray-700' : ''}`}>Comming soon</div>
+        className={`  px-1 text-white  cursor-pointer ${activeTab === 'Comming soon' ?  'bg-green-500' : 'bg-gray-700'}`}>Comming soon</div>
 
         </div>
       )}
@@ -240,7 +243,7 @@ console.log(activeTab)
         
       )}
 
-      {type === 'Tracking' && activeTab === 'tv' && (
+      {type === 'Tracking'  && (
         <div className="grid grid-rows-1 gap-2">
           {trackedData &&
             trackedData.map((track, index) => (

@@ -3,6 +3,7 @@ import CreatePlaylistPopup from './PlayListPopup';
 import { useNavigate } from 'react-router-dom';
 import { FaBars, FaCross, FaPlus, FaSearch, FaSort, FaTv } from 'react-icons/fa';
 import { IoIosArrowBack } from 'react-icons/io';
+import Navbar from '../BottomBar/Navbar';
 
 const titles = ['Tracking', 'Seen', 'Liked', 'Must Watch'];
 const cardColors = ['#3498db', '#2ecc71', '#e74c3c', '#f39c12'];
@@ -114,6 +115,15 @@ export default function Platlists() {
           <div className="text-white font-bold text-xl">Collections</div>
         </div>
 
+        {data && data.is_owner && (
+          <div className="flex justify-center items-center">
+            <div className=" mb-2 bg-blue-700 w-3/4 h-[4rem] rounded-2xl flex flex-row p-4 items-center">
+              <button className="text-white text-lg">New Collection</button>
+              <FaPlus size={20} onClick={() => setShowCreatePlaylistPopup(true)} className="text-white absolute right-0  mx-20" />
+            </div>
+          </div>
+        )}
+
         <div className="text-lg text-white font-semibold m-2">Default Collections</div>
         <section className="grid grid-cols-2 gap-4 mx-2 mr-4">
           {titles.map((title, index) => (
@@ -170,18 +180,12 @@ export default function Platlists() {
           </section>
         </div>
 
-        {data && data.is_owner && (
-          <div className="flex justify-center items-center">
-            <div className="fixed bottom-0 mb-6 bg-blue-700 w-3/4 h-[4rem] rounded-2xl flex flex-row p-4 items-center">
-              <button className="text-white text-lg">New Collection</button>
-              <FaPlus size={20} onClick={() => setShowCreatePlaylistPopup(true)} className="text-white absolute right-0 mx-4" />
-            </div>
-          </div>
-        )}
       </div>
       {showCreatePlaylistPopup && (
         <CreatePlaylistPopup onClose={() => setShowCreatePlaylistPopup(false)} onCreatePlaylist={handleCreatePlaylist} />
       )}
+
+      <Navbar/>
     </div>
   );
 }
