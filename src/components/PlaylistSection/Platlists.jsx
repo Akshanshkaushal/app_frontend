@@ -101,7 +101,7 @@ export default function Platlists() {
     };
 
     fetchData();
-  }, [jwttoken, handleCreatePlaylist, sortType]);
+  }, [jwttoken,  sortType]);
 
   const handleFilterClick = () => {
     setShowDropdown(!showDropdown);
@@ -179,13 +179,14 @@ export default function Platlists() {
               ))}
           </section>
         </div>
-
+     
       </div>
       {showCreatePlaylistPopup && (
         <CreatePlaylistPopup onClose={() => setShowCreatePlaylistPopup(false)} onCreatePlaylist={handleCreatePlaylist} />
       )}
-
-      <Navbar/>
+<Navbar/>
+    
     </div>
+
   );
 }

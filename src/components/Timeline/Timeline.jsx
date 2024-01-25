@@ -88,6 +88,168 @@ const TimelineItem = () => {
           {/* Circle for TV Shows section */}
           <div className="circle"></div>
         </div>
+
+          {/* TV Shows section */}
+          <div className="timeline-section">
+          <div className='flex items-center mb-4 text-lg text-gray-300'>9/17/2021</div>
+          <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
+            {tvShows.map((item) => (
+              <Link to={`/details/tvshow/${item.id}`} key={item.id}>
+                <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
+                  <div className="movie-card ">
+                    <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {/* Circle for TV Shows section */}
+          <div className="circle"></div>
+        </div>
+
+          {/* TV Shows section */}
+          <div className="timeline-section">
+          <div className='flex items-center mb-4 text-lg text-gray-300'>10/17/2021</div>
+          <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
+            {tvShows.map((item) => (
+              <Link to={`/details/tvshow/${item.id}`} key={item.id}>
+                <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
+                  <div className="movie-card ">
+                    <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {/* Circle for TV Shows section */}
+          <div className="circle"></div>
+        </div>
+
+          {/* TV Shows section */}
+          <div className="timeline-section">
+          <div className='flex items-center mb-4 text-lg text-gray-300'>11/17/2021</div>
+          <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
+            {tvShows.map((item) => (
+              <Link to={`/details/tvshow/${item.id}`} key={item.id}>
+                <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
+                  <div className="movie-card ">
+                    <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {/* Circle for TV Shows section */}
+          <div className="circle"></div>
+        </div>
+
+          {/* TV Shows section */}
+          <div className="timeline-section">
+          <div className='flex items-center mb-4 text-lg text-gray-300'>12/17/2021</div>
+          <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
+            {tvShows.map((item) => (
+              <Link to={`/details/tvshow/${item.id}`} key={item.id}>
+                <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
+                  <div className="movie-card ">
+                    <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {/* Circle for TV Shows section */}
+          <div className="circle"></div>
+        </div>
+
+          {/* TV Shows section */}
+          <div className="timeline-section">
+          <div className='flex items-center mb-4 text-lg text-gray-300'>1/17/2022</div>
+          <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
+            {tvShows.map((item) => (
+              <Link to={`/details/tvshow/${item.id}`} key={item.id}>
+                <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
+                  <div className="movie-card ">
+                    <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {/* Circle for TV Shows section */}
+          <div className="circle"></div>
+        </div>
+
+          {/* TV Shows section */}
+          <div className="timeline-section">
+          <div className='flex items-center mb-4 text-lg text-gray-300'>3/18/2022</div>
+          <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
+            {tvShows.map((item) => (
+              <Link to={`/details/tvshow/${item.id}`} key={item.id}>
+                <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
+                  <div className="movie-card ">
+                    <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {/* Circle for TV Shows section */}
+          <div className="circle"></div>
+        </div>
+
+          {/* TV Shows section */}
+          <div className="timeline-section">
+          <div className='flex items-center mb-4 text-lg text-gray-300'>9/27/2021</div>
+          <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
+            {tvShows.map((item) => (
+              <Link to={`/details/tvshow/${item.id}`} key={item.id}>
+                <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
+                  <div className="movie-card ">
+                    <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {/* Circle for TV Shows section */}
+          <div className="circle"></div>
+        </div>
+
+          {/* TV Shows section */}
+          <div className="timeline-section">
+          <div className='flex items-center mb-4 text-lg text-gray-300'>9/8/2021</div>
+          <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
+            {tvShows.map((item) => (
+              <Link to={`/details/tvshow/${item.id}`} key={item.id}>
+                <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
+                  <div className="movie-card ">
+                    <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {/* Circle for TV Shows section */}
+          <div className="circle"></div>
+        </div>
+
+          {/* TV Shows section */}
+          <div className="timeline-section">
+          <div className='flex items-center mb-4 text-lg text-gray-300'>4/17/2022</div>
+          <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
+            {tvShows.map((item) => (
+              <Link to={`/details/tvshow/${item.id}`} key={item.id}>
+                <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
+                  <div className="movie-card ">
+                    <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {/* Circle for TV Shows section */}
+          <div className="circle"></div>
+        </div>
       </div>
       <Navbar/>
     </div>

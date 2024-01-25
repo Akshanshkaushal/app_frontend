@@ -53,7 +53,10 @@ export default function Trending() {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,  // Hide arrows
+    autoplay: true, // Enable autoplay
+    autoplaySpeed: 2000, // Set the autoplay speed in milliseconds (e.g., 3000 for 3 seconds)
   };
+  
 
 
   return (
