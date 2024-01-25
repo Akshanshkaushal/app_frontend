@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { IoIosArrowBack, IoIosArrowDown } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
-import { dumy, postimg1, postimg2, postimg3, postimg5, postimg6, postimg7 } from '../../../assets';
-import { FaCross, FaCut, FaFilter, FaHome, FaTicketAlt } from 'react-icons/fa';
+import { dumy, postimg1, postimg2, postimg3, postimg4, postimg5, postimg6, postimg7 } from '../../../assets';
+import { FaCross, FaCut, FaFilter, FaHome, FaPlus, FaTicketAlt } from 'react-icons/fa';
 import { TiTick } from "react-icons/ti";
+
+
 
 const MovieCard = ({ movie, id }) => {
   const navigate = useNavigate();
@@ -83,6 +85,65 @@ movieData.forEach((movie, index) => {
   movie.value = (index + 1) * 5; // You can adjust this formula as needed
 });
 
+const MustStatic = () => {
+   return (
+    <div className='flex flex-col justify-center items-center'>
+  <div className='grid grid-cols-2 justify-center mb-4 items-center'>
+  <img src={postimg1}/>
+  <img src={postimg2}/>
+  <img src={postimg6}/>
+  <img src={postimg4}/>
+  </div>
+  <p className='text-gray-300 text-sm'>you need to watch </p>
+  </div>
+  )
+}
+
+const MustStatic2 = () => {
+  return (
+    <div className='flex flex-col justify-center items-center'>
+
+ <div className='grid grid-cols-2 justify-center mb-4 items-center'>
+ <img src={postimg5}/>
+ <img src={postimg6}/>
+ <img src={postimg2}/>
+ <img src={postimg1}/>
+ </div>
+ <p className='text-gray-300 text-sm'>All </p>
+</div>
+ )
+}
+
+const MustStatic3 = () => {
+  return (
+    <div className='flex flex-col justify-center items-center'>
+
+ <div className='grid grid-cols-2 justify-center mb-4 items-center'>
+ <img src={postimg5}/>
+ <img src={postimg6}/>
+ <img src={postimg2}/>
+ <img src={postimg1}/>
+ </div>
+ <p className='text-gray-300 text-sm'>Watch Worthy </p>
+</div>
+ )
+}
+
+const MustStatic4 = () => {
+  return (
+    <div className='flex flex-col justify-center items-center'>
+
+ <div className='grid grid-cols-2 justify-center mb-4 items-center'>
+ <img src={postimg5}/>
+ <img src={postimg6}/>
+ <img src={postimg2}/>
+ <img src={postimg1}/>
+ </div>
+ <p className='text-gray-300 text-sm'>heard its good</p>
+</div>
+ )
+}
+
 const MovieCardstatic = ({ movie, id }) => {
   return (
     <div className='flex flex-col justify-center'>
@@ -140,12 +201,17 @@ const PlaylistDetails = ({ playlistData, type, trackedData }) => {
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
+  const [showDropdown, setShowDropdown] = useState(false);
 
 
   const [value, setValue] = useState("50");
 
   const filteredData = playlistData?.movies.filter((item) => item.content_type === activeTab);
  
+  const handleFilterClick = () => {
+    setShowDropdown(!showDropdown);
+  };
+
 console.log(activeTab)
   return (
     <div className="text-white overflow-x-hidden  shadow-md rounded-md">
@@ -153,7 +219,7 @@ console.log(activeTab)
         <IoIosArrowBack size={20} className='text-white absolute left-0 mx-2' onClick={() => navigate("/playlist")} />
         <h3 className="text-3xl font-bold mx-8">{playlistData?.title || "Tracked"}</h3>
       </div>
-      {type !== 'Tracking'  && (
+      {type !== 'Tracking'   && (
       <div className='flex flex-row  text-2xl font-bold mb-6   gap-6 w-full'>
         <div className='flex flex-col justify-center items-center w-1/2'>
           <button
@@ -192,17 +258,42 @@ console.log(activeTab)
         </div>
       )}
 
+      {type !== 'Must Watch'   && (
       <div className='flex flex-row justify-center items-center gap-4 m-2 mt-4'>
         <div className=' text-gray-300 text-md p-1'>4 titles</div>
-        <div className=' text-gray-300 text-md p-1 flex flex-row justify-center items-center'>
+        <div className=' text-gray-300 text-md p-1 flex flex-row justify-center items-center' onClick={handleFilterClick}>
           <div>sorted by Relevance</div>
-          <IoIosArrowDown/>
+          <IoIosArrowDown  />
+          {showDropdown && (
+              <div className="absolute top-0 mt-44 w-56 bg-white border rounded-md shadow-md overflow-hidden z-10">
+                <div className="py-1">
+                  <button
+                   
+                    className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-300 w-full text-left"
+                  >
+                    Sort Alphabetically
+                  </button>
+                  <button
+                   
+                    className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-300 w-full text-left"
+                  >
+                    Sort by Movie Count
+                  </button>
+                  <button
+              
+                    className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-300 w-full text-left"
+                  >
+                    Sort by Date of Creation
+                  </button>
+                </div>
+              </div>
+            )}
         </div>
         <FaFilter className='ml-auto'/>
         <div className='text-xl rotate-45'>+</div>
        
       </div>
-
+      )}
   <div className='bg-gray-300 w-full mb-4 opacity-25 mx-4 h-[0.1rem]'></div>
 
 
@@ -235,11 +326,12 @@ console.log(activeTab)
       )}
 
       {type === 'Must Watch'  && (
-        <div className="grid grid-cols-3 gap-2">
-        {filteredData.map((item, index) => (
-          <MovieCard key={index} movie={item} id={item.content_id} />
-        ))}
-        </div>
+        <div className="grid grid-cols-2 justify-center items-center gap-8  p-8">
+     <MustStatic/>
+     <MustStatic2/>
+     <MustStatic3/>
+     <MustStatic4/>
+         </div>      
         
       )}
 
@@ -254,6 +346,13 @@ console.log(activeTab)
             ))}
         </div>      
       )}
+
+      <div className="flex justify-center items-center fixed w-full bottom-0">
+            <div className=" mb-2 bg-blue-700 w-3/4 h-[4rem] rounded-2xl flex flex-row p-4 items-center">
+              <button className="text-white text-lg">New Collection</button>
+              <FaPlus size={20}   className="text-white absolute right-0  mx-20" />
+            </div>
+          </div>
 
     </div>
   );
