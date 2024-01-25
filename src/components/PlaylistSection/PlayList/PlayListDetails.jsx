@@ -104,7 +104,7 @@ const MovieCardstatic = ({ movie, id }) => {
         <div className='bg-gray-500 text-white p-1 px-4 mt-auto w-3/4 rounded-lg mb-2 mx-2'>
           <button className='w-full flex flex-row justify-center items-center gap-2'>
             <FaHome />
-            <div className='text-xl'>Watch Now</div>
+            <div className='text-sm'>Watch Now</div>
           </button>
         </div>
       </div>
@@ -178,16 +178,16 @@ console.log(activeTab)
       }
 
       {type === 'Tracking'  && (
-        <div className='flex flex-row justify-center items-center gap-4 '>
+        <div className='flex flex-row justify-center items-center gap-2 '>
      
           <div  onClick={() => handleTabChange('continueWatching')}
-        className={`  px-1 text-white cursor-pointer ${activeTab === 'continueWatching' ? 'bg-green-500' : 'bg-gray-700'}`}>continueWatching</div>
+        className={` text-sm px-1 text-white cursor-pointer ${activeTab === 'continueWatching' ? 'bg-green-500' : 'bg-gray-700'}`}>continueWatching</div>
       
       <div  onClick={() => handleTabChange('Havent started')}
-        className={` px-1 text-white  cursor-pointer ${activeTab === 'Havent started' ?  'bg-green-500' : 'bg-gray-700'}`}>Havent started</div>
+        className={` text-sm px-1  text-white  cursor-pointer ${activeTab === 'Havent started' ?  'bg-green-500' : 'bg-gray-700'}`}>Havent started</div>
 
 <div  onClick={() => handleTabChange('Comming soon')}
-        className={`  px-1 text-white  cursor-pointer ${activeTab === 'Comming soon' ?  'bg-green-500' : 'bg-gray-700'}`}>Comming soon</div>
+        className={`text-sm  px-1 text-white  cursor-pointer ${activeTab === 'Comming soon' ?  'bg-green-500' : 'bg-gray-700'}`}>Comming soon</div>
 
         </div>
       )}
