@@ -347,13 +347,14 @@ console.log(activeTab)
         </div>      
       )}
 
+      {type === 'Must Watch'  && (
       <div className="flex justify-center items-center fixed w-full bottom-0">
             <div className=" mb-2 bg-blue-700 w-3/4 h-[4rem] rounded-2xl flex flex-row p-4 items-center">
               <button className="text-white text-lg">New Collection</button>
               <FaPlus size={20}   className="text-white absolute right-0  mx-20" />
             </div>
           </div>
-
+          )}
     </div>
   );
 };

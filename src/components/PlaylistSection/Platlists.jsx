@@ -115,7 +115,7 @@ export default function Platlists() {
           <div className="text-white font-bold text-xl">Collections</div>
         </div>
 
-        {data && data.is_owner && (
+        {data && data.is_owner &&   (
           <div className="flex justify-center items-center">
             <div className=" mb-2 bg-blue-700 w-3/4 h-[4rem] rounded-2xl flex flex-row p-4 items-center">
               <button className="text-white text-lg">New Collection</button>
