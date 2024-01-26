@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { dumy } from '../../../assets';
 import { FaBars, FaCross, FaCut, FaFilter, FaHome, FaSearch, FaTicketAlt } from 'react-icons/fa';
 import { FaPlus, FaBookmark, FaEllipsisV, FaPaperPlane } from 'react-icons/fa'; // Importing icons from Font Awesome
+import Navbar from '../../BottomBar/Navbar';
 
 const MovieCard = ({ movie, id }) => {
   const navigate = useNavigate();
@@ -134,7 +135,7 @@ const CustomPlaylist = ({ playlistData, type, trackedData }) => {
         ))}
         </div>
         
-      
+      <Navbar/>
     </div>
   );
 };

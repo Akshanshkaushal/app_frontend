@@ -2,6 +2,7 @@ import React from 'react'
 import { FaCircle, FaPersonBooth } from 'react-icons/fa';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../../BottomBar/Navbar';
 
 export default function Setting() {
     const navigate = useNavigate();
@@ -46,6 +47,8 @@ export default function Setting() {
 <a className='text-blue-500'>Accounts center</a>
 <p className='text-white'>bjdwdokdwqkdlkdlwkdwlm</p>
 </div>
+
+<Navbar/>
     </div>
   )
 }

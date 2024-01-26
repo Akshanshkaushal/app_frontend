@@ -3,6 +3,7 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { useNavigate } from 'react-router-dom';
 import { dumy } from '../../../assets';
 import { FaCircle, FaTicketAlt } from 'react-icons/fa';
+import Navbar from '../../BottomBar/Navbar';
 
 export default function Account() {
     const navigate = useNavigate();
@@ -77,6 +78,7 @@ export default function Account() {
 
 
 </section>
+<Navbar/>
     </div>
   )
 }
