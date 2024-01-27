@@ -26,6 +26,8 @@ import Heading from './components/Trending/Heading';
 import TimelineDetail from './components/Timeline/TimelineDetail';
 import SearchMain from './components/Search/SearchMain';
 import Notification from './components/Notifications/Notification';
+import InboxList from './components/Inbox/InboxList';
+import Inbox from './components/Inbox/Inbox';
  
  
 const isAuthenticated = () => {
@@ -53,6 +55,8 @@ function App() {
           <Route path="/moviesearch" element={<MovieSearch />} />
           <Route path="/search" element={<SearchMain />} />
           <Route path="/usersearch" element={<UserSearch />} />
+          <Route path="/inboxlist" element={<InboxList />} />
+          <Route path="/inbox" element={<Inbox />} />
           <Route path="/notification" element={<Notification />} />
           <Route path="/details/:type/:id" element={<Details />} />
           <Route path="/story/:id" element={<StoryDetails/>} />

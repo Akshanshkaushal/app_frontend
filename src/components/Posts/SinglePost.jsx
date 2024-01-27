@@ -138,8 +138,8 @@ const SinglePost = ({ post,style,img,user,content }) => {
 
 
       <div
-        className="h-[29rem] bg-no-repeat bg-center bg-cover borderf"
-        style={{ background: `url(${img}) center/cover`, color: 'red' }}
+        className="h-[29rem]  bg-center bg-contain borderf"
+        style={{ background: `url(${img}) center/contain`, color: 'red' }}
         onClick={handleClick}
       >
         {showHeartAnimation && <img src={heartimg} className="heart-animation" alt="Heart" />}

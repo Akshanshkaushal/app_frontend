@@ -37,11 +37,11 @@ const Header = () => {
       </div>
 
       <div className="flex-grow text-center">
-        <p className="text-xl font-semibold">Instagram</p>
+        <p className="text-xl font-semibold">MovieSnap</p>
       </div>
 
       <div className="flex items-center">
-        <FaEnvelope size={20} className="mr-4" />
+        <FaEnvelope size={20} className="mr-4" onClick={() => Navigate("/inboxlist")}/>
       </div>
     </div>
   );
