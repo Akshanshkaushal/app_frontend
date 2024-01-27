@@ -31,8 +31,11 @@ const MessageBox = () => (
   );
 
 
-  const PostBoxleft = () => (
-    <div className='w-full relative justify-center flex flex-col items-center'>
+  const PostBoxleft = () => {
+    const navigate = useNavigate();
+
+    return(
+    <div className='w-full relative justify-center flex flex-col items-center' onClick={() => navigate('/reels')}>
     <div
           className="h-[20rem] relative  mr-auto text-white  bg-center bg-contain  rounded-3xl"
         style={{ background: `url(${postimg1}) center/contain`, width: "60%"}}
@@ -50,11 +53,14 @@ const MessageBox = () => (
     <FaBookmark className='absolute top-20  right-32 text-white'/>
     <p className='text-gray-300 text-sm '>11:48</p>
     </div>
- 
-  );
+    )
+    };
 
-  const PostBox = () => (
-    <div className='w-full relative flex flex-col items-center'>
+  const PostBox = () => {
+    const navigate = useNavigate();
+
+    return(
+    <div className='w-full relative flex flex-col items-center' onClick={() => navigate('/reels')}>
     <div
           className="h-[20rem] relative   ml-auto text-white  bg-center bg-contain  rounded-3xl"
         style={{ background: `url(${postimg1}) center/contain`, width: "60%"}}
@@ -73,8 +79,9 @@ const MessageBox = () => (
     <p className='text-gray-300 text-sm '>11:48</p>
 
     </div>
- 
-  );
+    )
+  
+      }  ;
 
 export default function Inbox() {
     const navigate = useNavigate();
@@ -95,7 +102,7 @@ export default function Inbox() {
     </div>
 
 <div className='flex flex-col justify-center  w-full gap-4 h-auto mt-20 mb-16 '>
-<PostBox/>
+<PostBox />
 <PostBoxleft/>
 <PostBox/>
 <PostBoxleft/>

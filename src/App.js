@@ -28,6 +28,7 @@ import SearchMain from './components/Search/SearchMain';
 import Notification from './components/Notifications/Notification';
 import InboxList from './components/Inbox/InboxList';
 import Inbox from './components/Inbox/Inbox';
+import Reel from './components/Inbox/Reel';
  
  
 const isAuthenticated = () => {
@@ -57,6 +58,7 @@ function App() {
           <Route path="/usersearch" element={<UserSearch />} />
           <Route path="/inboxlist" element={<InboxList />} />
           <Route path="/inbox" element={<Inbox />} />
+          <Route path="/reels" element={<Reel />} />
           <Route path="/notification" element={<Notification />} />
           <Route path="/details/:type/:id" element={<Details />} />
           <Route path="/story/:id" element={<StoryDetails/>} />
