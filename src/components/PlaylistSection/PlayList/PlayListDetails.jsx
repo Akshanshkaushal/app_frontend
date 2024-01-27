@@ -5,6 +5,8 @@ import { dumy, postimg1, postimg2, postimg3, postimg4, postimg5, postimg6, posti
 import { FaCross, FaCut, FaFilter, FaHome, FaPlus, FaTicketAlt } from 'react-icons/fa';
 import { TiTick } from "react-icons/ti";
 import Navbar from '../../BottomBar/Navbar';
+import { Sidebar } from 'react-feather';
+import Filter from './Filter';
 
 
 
@@ -213,6 +215,12 @@ const PlaylistDetails = ({ playlistData, type, trackedData }) => {
     setShowDropdown(!showDropdown);
   };
 
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
+
 console.log(activeTab)
   return (
     <div className="text-white overflow-x-hidden  shadow-md rounded-md">
@@ -290,7 +298,9 @@ console.log(activeTab)
               </div>
             )}
         </div>
-        <FaFilter className='ml-auto'/>
+        <FaFilter className='ml-auto' onClick={toggleSidebar} />
+        <Filter isOpen={isSidebarOpen} onClose={toggleSidebar} />
+
         <div className='text-xl rotate-45'>+</div>
        
       </div>
