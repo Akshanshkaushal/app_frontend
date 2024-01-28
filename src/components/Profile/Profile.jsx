@@ -114,10 +114,10 @@ const Profile = () => {
 
   return (
     <div>
-      <div className="  text-white flex flex-col">
+      <div className="  text-white flex flex-col ">
         <section className="bg-white top-bar flex flex-row  text-black ">
         
-          <div className='flex flex-row ml-auto justify-between gap-6 items-center'>
+          <div className='flex flex-row ml-auto justify-between gap-6 items-center p-2'>
             <FaRing onClick={() => navigate("/settings")} />
             <FaEllipsisV onClick={toggleDropdown} />
           </div>
