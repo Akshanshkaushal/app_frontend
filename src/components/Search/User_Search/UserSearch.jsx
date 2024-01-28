@@ -2,14 +2,31 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../../BottomBar/Navbar';
-import { FaSearch } from 'react-icons/fa';
+import { FaFilter, FaSearch } from 'react-icons/fa';
 import { dumy } from '../../../assets';
+import Filter from '../../PlaylistSection/PlayList/Filter';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 
 const UserSearch = () => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const jwttoken = localStorage.getItem('jwttoken');
+
+  
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const handleFilterClick = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
+
 
   const handleInputChange = async (e) => {
     const newQuery = e.target.value;
@@ -71,6 +88,32 @@ const UserSearch = () => {
             onChange={handleInputChange}
           />
           <FaSearch className="absolute left-8 cursor-pointer text-gray-400" />
+          <div className="  text-left">
+            <BsThreeDotsVertical className="text-gray-500 cursor-pointer  absolute right-12 top-3" onClick={handleFilterClick} />
+            {showDropdown && (
+              <div className="absolute right-0 mt-2 w-56 bg-white border rounded-md shadow-md overflow-hidden z-10">
+                <div className="py-1">
+                  <button
+                     className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-300 w-full text-left"
+                  >
+                    Sort Alphabetically
+                  </button>
+                  <button
+                     className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-300 w-full text-left"
+                  >
+                    Sort by Movie Count
+                  </button>
+                  <button
+                     className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-300 w-full text-left"
+                  >
+                    Sort by Date of Creation
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+          <FaFilter className='ml-auto absolute right-8 cursor-pointer text-gray-400' onClick={toggleSidebar} />
+        <Filter isOpen={isSidebarOpen} onClose={toggleSidebar} />
         </div>
       
       <h1 className='text-gray-200 font-bold text-2xl flex justify-start items-start mx-12 '>Users With Similar Interests</h1>

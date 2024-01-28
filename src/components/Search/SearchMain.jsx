@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import { IoIosArrowBack, IoIosArrowDown, IoIosArrowForward } from 'react-icons/io';
 import { useNavigate, Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -7,13 +7,32 @@ import 'slick-carousel/slick/slick-theme.css';
 import { dumy, postimg1, postimg2, postimg3, postimg4, postimg5, postimg6, postimg7 } from '../../assets';
 import "./style.css";
 import Navbar from '../BottomBar/Navbar';
-import { FaSearch } from 'react-icons/fa';
+import { FaFilter, FaSearch } from 'react-icons/fa';
+import Filter from '../PlaylistSection/PlayList/Filter';
+import { BsThreeDots, BsThreeDotsVertical } from 'react-icons/bs';
 
 export default function SearchMain() {
   const [movies, setMovies] = useState([]);
   const [tvShows, setTvShows] = useState([]);
   const [activeTab, setActiveTab] = useState('movies');
   const [error, setError] = useState(null);
+
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+
+  const handleFilterClick = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
+
+ 
+
 
   const jwttoken = localStorage.getItem('jwttoken');
   const navigate = useNavigate();
@@ -57,6 +76,7 @@ export default function SearchMain() {
     autoplay: true, // Enable autoplay
     autoplaySpeed: 2000, // Set the autoplay speed in milliseconds (e.g., 3000 for 3 seconds)
   };
+
 
 
   return (
@@ -111,8 +131,36 @@ export default function SearchMain() {
             style={{ width: '90%' }}
             onClick={() => navigate("/moviesearch")} 
           />
-          <FaSearch className="absolute left-8 cursor-pointer text-gray-400" />
+          <FaSearch className="absolute left-3 cursor-pointer text-gray-400" />
+          <div className="  text-left">
+            <BsThreeDotsVertical className="text-gray-500 cursor-pointer absolute right-8 top-3" onClick={handleFilterClick} />
+            {showDropdown && (
+              <div className="absolute right-0 mt-2 w-56 bg-white border rounded-md shadow-md overflow-hidden z-10">
+                <div className="py-1">
+                  <button
+                     className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-300 w-full text-left"
+                  >
+                    Sort Alphabetically
+                  </button>
+                  <button
+                     className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-300 w-full text-left"
+                  >
+                    Sort by Movie Count
+                  </button>
+                  <button
+                     className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-300 w-full text-left"
+                  >
+                    Sort by Date of Creation
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+          <FaFilter className='ml-auto absolute right-3 cursor-pointer text-gray-400' onClick={toggleSidebar} />
+        <Filter isOpen={isSidebarOpen} onClose={toggleSidebar} />
         </div>
+ 
+  
 
       <div className='flex flex-row text-xl text-gray-200 gap-2 mx-4 mb-2'> 
       <div className='flex flex-row justify-center items-center' onClick={() => navigate("/heading")} >
