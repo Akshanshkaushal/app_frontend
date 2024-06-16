@@ -50,9 +50,9 @@ function App() {
     <Router>
       <LikedProvider>
         <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
+        // <Route path="/" element={<Navigate to="/login" />} />
+        //   <Route path="/login" element={<Login />} />
+        //   <Route path="/signup" element={<SignUp />} />
           <Route path="/moviesearch" element={<MovieSearch />} />
           <Route path="/search" element={<SearchMain />} />
           <Route path="/usersearch" element={<UserSearch />} />
@@ -95,10 +95,19 @@ function App() {
           <Route
             path="/post/:postId" element={<PostPage/>}
           />
-           <Route
-            path="/home"
-            element={<PrivateRoute element={<Home />} path="/home" />}
+          //  <Route
+          //   path="/home"
+          //   element={<PrivateRoute element={<Home />} path="/home" />}
+          // />
+                       <Route
+            path="/"
+            element={<Navigate to="/home" />/>}
           />
+                 <Route
+            path="/home"
+            element ={<Home />} />}
+          />
+             
               <Route
             path="/trending" element={<Trending />} 
           />
