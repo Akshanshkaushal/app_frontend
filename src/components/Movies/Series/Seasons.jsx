@@ -12,36 +12,30 @@ const SeasonDetails = () => {
   const { id } = useParams();
   const jwttoken = localStorage.getItem('jwttoken');
 
+  // Dummy data
+  const dummySeasons = [
+    {
+      id: 1,
+      name: "Season 1",
+      episodes: [
+        {
+          id: 101,
+          name: "Episode 1",
+          still_path: "/dummy-still.jpg",
+          overview: "This is a dummy episode overview.",
+          episode_number: 1,
+        },
+        // Add more dummy episodes as needed
+      ],
+    },
+    // Add more dummy seasons as needed
+  ];
+
   useEffect(() => {
-    const fetchDetails = async () => {
-      try {
-        const response = await fetch(
-          `https://techsnap-pe2v.onrender.com/movies/movie-details/?id=${id}&type=tv`,
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Token ${jwttoken}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status} - ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        setSeasonsData(data.data.seasons);
-        if (data.data.seasons && data.data.seasons.length > 0) {
-          setCurrentSeason(data.data.seasons[0]); // Set the default season
-        }
-      } catch (error) {
-        console.error('Error fetching details:', error);
-      }
-    };
-
-    fetchDetails();
-  }, [id, jwttoken]);
+    // Simulate API call
+    setSeasonsData(dummySeasons);
+    setCurrentSeason(dummySeasons[0]);
+  }, [id]);
 
   const settings = {
     speed: 500,
@@ -54,29 +48,9 @@ const SeasonDetails = () => {
   };
 
   const handleTrackButtonClick = async (episode) => {
-    const trackApiUrl = `https://techsnap-pe2v.onrender.com/movies/track/?id=${id}&ep=${episode.episode_number}&season=${currentSeason.season_number}&title=${episode.name}&synopsis=${episode.synopsis}&Title=${currentSeason.name}`;
-  
-    try {
-      const response = await fetch(trackApiUrl, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${jwttoken}`,
-        },
-      });
-  
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} - ${response.statusText}`);
-      }
-      const data = await response.json();
-      console.log(data)
-  
-      console.log('Tracking successful');
-    } catch (error) {
-      console.error('Error tracking episode:', error);
-    }
+    // Simulate tracking
+    console.log('Tracking episode:', episode);
   };
-  
 
   return (
     <div className='text-white overflow-x-hidden flex flex-col gap-2'>

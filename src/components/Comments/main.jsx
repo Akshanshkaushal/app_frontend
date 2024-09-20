@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { dummyMovies, dummyTvShows } from '../../dummyData';
 
 const Comment = ({ comment }) => (
     <div className=" ml-2 ">
@@ -30,65 +31,35 @@ const CommentBox = () => (
   </div>
 );
 
-const Comments = ({ postId}) => {
+const Comments = ({ postId }) => {
   const [comments, setComments] = useState([]);
-  const jwttoken = localStorage.getItem('jwttoken');
   const [posts, setPosts] = useState([]);
-  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`https://techsnap-pe2v.onrender.com/posts/feed?page=${page}`);
-        const data = await response.json();
-        setPosts((prevPosts) => [...prevPosts, ...data.results]);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+    // Simulate fetching comments
+    const dummyComments = [
+      { id: 1, user: 'User1', content: 'Great movie!', timestamp: '2 hours ago', replies: [] },
+      { id: 2, user: 'User2', content: 'I loved the plot twists.', timestamp: '1 hour ago', replies: [] },
+      { id: 3, user: 'User3', content: 'The acting was superb.', timestamp: '30 minutes ago', replies: [] },
+    ];
+    setComments(dummyComments);
 
-    fetchData();
-  }, [page]);
-
-
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const response = await fetch(
-          `https://techsnap-pe2v.onrender.com/posts/get_comments?id=${postId}`,
-          {
-            headers: {
-              Authorization: `Token ${jwttoken}`,
-            },
-          }
-        );
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data)
-          setComments(data.data.replies);
-        
-        } else {
-          console.error("Failed to fetch comments");
-        }
-      } catch (error) {
-        console.error("Error fetching comments:", error);
-      }
-    };
-
-    fetchComments();
-  }, [postId, jwttoken]);
+    // Simulate fetching posts
+    setPosts([...dummyMovies, ...dummyTvShows]);
+  }, [postId]);
 
   return (
     <div className="w-full ">
-    <div className="overflow-auto h-[14rem]">
-      {comments.length > 0 &&
-        comments.map((comment) => (
+      <div className="overflow-auto h-[14rem]">
+        {comments.map((comment) => (
           <Comment key={comment.id} comment={comment} />
         ))}
-        </div>
+      </div>
       <CommentBox />
     </div>
   );
 };
 
 export default Comments;
+
+

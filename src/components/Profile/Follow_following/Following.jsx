@@ -12,11 +12,28 @@ export default function Following() {
 
   const [activeTab, setActiveTab] = useState('Following');
 
-   
-
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
+
+  // Dummy data for followers and following
+  const dummyFollowers = [
+    { id: 1, username: 'JohnDoe', email: 'john@example.com', profile_pic: 'https://example.com/john.jpg' },
+    { id: 2, username: 'JaneSmith', email: 'jane@example.com', profile_pic: 'https://example.com/jane.jpg' },
+    { id: 3, username: 'BobJohnson', email: 'bob@example.com', profile_pic: 'https://example.com/bob.jpg' },
+  ];
+
+  const dummyFollowing = [
+    { id: 4, username: 'AliceWilliams', email: 'alice@example.com', profile_pic: 'https://example.com/alice.jpg' },
+    { id: 5, username: 'CharlieBrown', email: 'charlie@example.com', profile_pic: 'https://example.com/charlie.jpg' },
+    { id: 6, username: 'EvaGreen', email: 'eva@example.com', profile_pic: 'https://example.com/eva.jpg' },
+  ];
+
+  useEffect(() => {
+    // Simulate API call with dummy data
+    setFollowersList(dummyFollowers);
+    setFollowingList(dummyFollowing);
+  }, []);
 
   useEffect(() => {
     const fetchFollowersList = async () => {
@@ -113,30 +130,31 @@ export default function Following() {
      
      {activeTab === 'Following' &&
       <ul>
-        {followersList.map(user => (
+        {followingList.map(user => (
             <Link to={`/profiledetails/${user.id}`} key={user.id}>
-            <div className="flex flex-row gap-2 justify-center items-center rounded-full h-[4rem]">
-          <p className="text-white">{user.username }</p>
-          <p className="text-white">{user.email}</p>
-          {user.profile_pic && (
+            <div className="flex flex-row gap-4 mt-2 w-full justify-start mx-4 items-center rounded-full h-[4rem]">   
             <img
               src={user.profile_pic || dumy}
               alt={user.username}
-              className="w-full h-[10rem] object-cover"
+              className="h-12 w-12 rounded-full object-cover"
             />
-          )}
-        </div>          </Link>
+            <div className='flex flex-col gap-0'>
+          <p className="text-white font-semibold">{user.username}</p>
+          <p className="text-white">{user.email}</p>
+          </div>
+        </div>
+         </Link>
         ))}
       </ul>
      }
 
      {activeTab === 'Followers' && 
       <ul>
-        {followingList.map(user => (
+        {followersList.map(user => (
             <Link to={`/profiledetails/${user.id}`} key={user.id}>
             <div className="flex flex-row gap-4 mt-2 w-full justify-start mx-4 items-center rounded-full h-[4rem]">   
             <img
-              src={user?.profile_pic || dumy}
+              src={user.profile_pic || dumy}
               alt={user.username}
               className="h-12 w-12 rounded-full object-cover"
             />

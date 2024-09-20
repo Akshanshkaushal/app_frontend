@@ -4,114 +4,47 @@ import PlaylistDetails from "./PlayListDetails";
 import { useParams } from 'react-router-dom';
 import CustomPlaylist from './CustomPlaylist';
 
- 
-
 const PlaylistPage = () => {
   const [playlistData, setPlaylistData] = useState(null);
   const [trackedData, setTrackedData] = useState(null);
   const [seenData, setSeenData] = useState(null);
   const [mustWatchData, setMustWatchData] = useState(null);
   const [likedData, setLikedData] = useState(null);
-  const jwttoken = localStorage.getItem('jwttoken');
   const { type } = useParams();
   console.log(type)
 
-  
   useEffect(() => {
-    const fetchPlaylistData = async () => {
-      try {
-        const response = await fetch(` https://techsnap-pe2v.onrender.com/movies/get_tracked/`, {
-          headers: {
-            Authorization: `Token ${jwttoken}`,
-          },
-        });
-        const data = await response.json();
-        console.log(data.data);
-        setTrackedData(data.data);
-      } catch (error) {
-        console.error('Error fetching playlist data:', error);
-      }
-    };
+    // Simulating API calls with dummy data
+    const dummyTrackedData = [
+      { id: 1, title: 'Tracked Movie 1', poster_path: '/path/to/poster1.jpg' },
+      { id: 2, title: 'Tracked Movie 2', poster_path: '/path/to/poster2.jpg' },
+    ];
+    setTrackedData(dummyTrackedData);
 
-    fetchPlaylistData();
-  }, [type, jwttoken]);
+    const dummySeenData = [
+      { id: 1, title: 'Seen Movie 1', poster_path: '/path/to/poster3.jpg' },
+      { id: 2, title: 'Seen Movie 2', poster_path: '/path/to/poster4.jpg' },
+    ];
+    setSeenData(dummySeenData);
 
-  useEffect(() => {
-    const fetchPlaylistData = async () => {
-      try {
-        const response = await fetch(`https://techsnap-pe2v.onrender.com/movies/your_playlist/?type=${type}`, {
-          headers: {
-            Authorization: `Token ${jwttoken}`,
-          },
-        });
-        const data = await response.json();
-        console.log(data);
-        setPlaylistData(data.data);
-      } catch (error) {
-        console.error('Error fetching playlist data:', error);
-      }
-    };
+    const dummyMustWatchData = [
+      { id: 1, title: 'Must Watch Movie 1', poster_path: '/path/to/poster5.jpg' },
+      { id: 2, title: 'Must Watch Movie 2', poster_path: '/path/to/poster6.jpg' },
+    ];
+    setMustWatchData(dummyMustWatchData);
 
-    fetchPlaylistData();
-  }, [type, jwttoken]);
+    const dummyLikedData = [
+      { id: 1, title: 'Liked Movie 1', poster_path: '/path/to/poster7.jpg' },
+      { id: 2, title: 'Liked Movie 2', poster_path: '/path/to/poster8.jpg' },
+    ];
+    setLikedData(dummyLikedData);
 
-  useEffect(() => {
-    const fetchSeenData = async () => {
-      try {
-        const response = await fetch(`https://techsnap-pe2v.onrender.com/movies/your_playlist/?type=Seen`, {
-          headers: {
-            Authorization: `Token ${jwttoken}`,
-          },
-        });
-        const data = await response.json();
-        console.log(data);
-        setSeenData(data.data);
-      } catch (error) {
-        console.error('Error fetching playlist data:', error);
-      }
-    };
-
-    fetchSeenData();
-  }, [jwttoken]);
-
-
-  useEffect(() => {
-    const fetchMustData = async () => {
-      try {
-        const response = await fetch(`https://techsnap-pe2v.onrender.com/movies/your_playlist/?type=Must Watch`, {
-          headers: {
-            Authorization: `Token ${jwttoken}`,
-          },
-        });
-        const data = await response.json();
-        console.log(data);
-        setMustWatchData(data.data);
-      } catch (error) {
-        console.error('Error fetching playlist data:', error);
-      }
-    };
-
-    fetchMustData();
-  }, [jwttoken]);
-
-  useEffect(() => {
-    const fetchLikedData = async () => {
-      try {
-        const response = await fetch(`https://techsnap-pe2v.onrender.com/movies/your_playlist/?type=Liked`, {
-          headers: {
-            Authorization: `Token ${jwttoken}`,
-          },
-        });
-        const data = await response.json();
-        console.log(data);
-        setLikedData(data.data);
-      } catch (error) {
-        console.error('Error fetching playlist data:', error);
-      }
-    };
-
-    fetchLikedData();
-  }, [jwttoken]);
+    const dummyPlaylistData = [
+      { id: 1, title: 'Playlist Movie 1', poster_path: '/path/to/poster9.jpg' },
+      { id: 2, title: 'Playlist Movie 2', poster_path: '/path/to/poster10.jpg' },
+    ];
+    setPlaylistData(dummyPlaylistData);
+  }, [type]);
 
   return (
     <div>
@@ -127,3 +60,4 @@ const PlaylistPage = () => {
 };
 
 export default PlaylistPage;
+

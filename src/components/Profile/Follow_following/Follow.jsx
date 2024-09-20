@@ -7,56 +7,31 @@ import { FaSearch } from 'react-icons/fa';
 export default function Following() {
   const [followersList, setFollowersList] = useState([]);
   const [followingList, setFollowingList] = useState([]);
-  const jwttoken = localStorage.getItem('jwttoken');
   const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState('Followers');
-
-   
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
   useEffect(() => {
-    const fetchFollowersList = async () => {
-      try {
-        const response = await fetch('https://techsnap-pe2v.onrender.com/accounts/get_followers'
-        , {
-            headers: {
-              Authorization: `Token ${jwttoken}`,
-            },
-          });
-        const data = await response.json();
-        console.log(data.data)
-        setFollowersList(data.data);
-      } catch (error) {
-        console.error('Error fetching following list:', error);
-      }
-    };
+    // Dummy data for followers
+    const dummyFollowers = [
+      { id: 1, username: 'JohnDoe', email: 'john@example.com', profile_pic: dumy },
+      { id: 2, username: 'JaneSmith', email: 'jane@example.com', profile_pic: dumy },
+      // Add more dummy followers as needed
+    ];
+    setFollowersList(dummyFollowers);
 
-    fetchFollowersList();
-  }, []); 
-
-  useEffect(() => {
-    const fetchFollowingList = async () => {
-      try {
-        const response = await fetch('https://techsnap-pe2v.onrender.com/accounts/get_following'
-        , {
-            headers: {
-              Authorization: `Token ${jwttoken}`,
-            },
-          });
-        const data = await response.json();
-        console.log(data.data)
-        setFollowingList(data.data);
-      } catch (error) {
-        console.error('Error fetching following list:', error);
-      }
-    };
-
-    fetchFollowingList();
-  }, []); 
+    // Dummy data for following
+    const dummyFollowing = [
+      { id: 3, username: 'AliceJohnson', email: 'alice@example.com', profile_pic: dumy },
+      { id: 4, username: 'BobWilliams', email: 'bob@example.com', profile_pic: dumy },
+      // Add more dummy following as needed
+    ];
+    setFollowingList(dummyFollowing);
+  }, []);
 
   return (
     <div>

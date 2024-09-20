@@ -22,40 +22,26 @@ const TvDetails = ({playlists}) => {
     setShowModal(false);
   };
 
+  // Dummy data
+  const dummyTvDetails = {
+    name: "Dummy TV Series",
+    backdrop_path: "/dummy-backdrop.jpg",
+    overview: "This is a dummy TV series overview.",
+    likes: 15,
+    dislikes: 3,
+    seen: false,
+    must: false,
+    genres: [{ id: 1, name: "Comedy" }, { id: 2, name: "Drama" }],
+    production_companies: [{ id: 1, name: "Dummy TV Productions" }],
+  };
+
   useEffect(() => {
-    const fetchDetails = async () => {
-      try {
-        const response = await fetch(
-          `https://techsnap-pe2v.onrender.com/movies/movie-details/?id=${id}&type=tv`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Token ${jwttoken}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status} - ${response.statusText}`);
-        }
-
-        const responseData = await response.json();
-        console.log(responseData);
-        setData(responseData.data);
-
- 
-        console.log(responseData.data.likes)
-
-        setLiked(responseData.data.likes > 0);
-        setSeen(responseData.data.seen);
-        setWatch(responseData.data.must);
-      } catch (error) {
-        console.error('Error fetching details:', error);
-      }
-    };
-
-    fetchDetails();
-  }, [id, type, jwttoken]);
+    // Simulate API call
+    setData(dummyTvDetails);
+    setLiked(dummyTvDetails.likes > 0);
+    setSeen(dummyTvDetails.seen);
+    setWatch(dummyTvDetails.must);
+  }, [id]);
 
   const handleLike = async () => {
     try {

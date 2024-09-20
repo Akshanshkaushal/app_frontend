@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../../BottomBar/Navbar';
@@ -11,9 +11,8 @@ const UserSearch = () => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
-  const jwttoken = localStorage.getItem('jwttoken');
+  // const jwttoken = localStorage.getItem('jwttoken');
 
-  
   const [showDropdown, setShowDropdown] = useState(false);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -21,57 +20,44 @@ const UserSearch = () => {
     setShowDropdown(!showDropdown);
   };
 
-
-
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
 
-
-  const handleInputChange = async (e) => {
+  const handleInputChange = (e) => {
     const newQuery = e.target.value;
     setQuery(newQuery);
 
     if (newQuery.trim() !== '') {
-      try {
-        const response = await axios.get(
-          `https://techsnap-pe2v.onrender.com/accounts/results?query=${newQuery}`,
-          {
-            headers: {
-              Authorization: `Token ${jwttoken}`,
-            },
-          }
-        );
-        setResults(response.data.data);
-        setShowResults(true);
-      } catch (error) {
-        console.error('Error fetching results:', error);
-      }
+      // Simulating API call with dummy data
+      const dummyResults = [
+        { id: 1, username: 'user1', profile_pic: dumy },
+        { id: 2, username: 'user2', profile_pic: dumy },
+        { id: 3, username: 'user3', profile_pic: dumy },
+      ];
+      setResults(dummyResults);
+      setShowResults(true);
     } else {
       setShowResults(false);
     }
   };
 
   const renderResults = () => {
-
     return results.map((result) => (
-      
       <Link to={`/profiledetails/${result.id}`} key={result.id}>
-        <div  className="relative p-4 border border-gray-700 mb-2 rounded-md h-[15rem]">
-      <div className=' p-2 flex flex-col justify-center items-center gap-2'>
+        <div className="relative p-4 border border-gray-700 mb-2 rounded-md h-[15rem]">
+          <div className=' p-2 flex flex-col justify-center items-center gap-2'>
             <img
               src={result?.profile_pic || dumy}
               alt={result.username}
               className="w-[5.5rem] h-[5rem] object-cover rounded-lg"
             />
- 
-          <p className="text-white">{result.username}</p>
-          <p className="text-white">{result.username}</p>
-         <div className='border border-red-500 rounded-lg text-red-400 px-1'> <button >Follow</button> </div>
-        </div>
+            <p className="text-white">{result.username}</p>
+            <p className="text-white">{result.username}</p>
+            <div className='border border-red-500 rounded-lg text-red-400 px-1'> <button >Follow</button> </div>
+          </div>
         </div>
       </Link>
-     
     ));
   };
 

@@ -7,44 +7,18 @@ import 'slick-carousel/slick/slick-theme.css';
 import { dumy, postimg1, postimg2, postimg3, postimg4, postimg5, postimg6, postimg7 } from '../../assets';
 import "./Trending.css";
 import Navbar from '../BottomBar/Navbar';
+import { dummyMovies, dummyTvShows } from '../../dummyData';
 
 export default function Trending() {
   const [movies, setMovies] = useState([]);
   const [tvShows, setTvShows] = useState([]);
   const [activeTab, setActiveTab] = useState('movies');
-  const [error, setError] = useState(null);
-
-  const jwttoken = localStorage.getItem('jwttoken');
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://techsnap-pe2v.onrender.com/movies/trending/', {
-          headers: {
-            Authorization: `Token ${jwttoken}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`Failed to fetch data. Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        setMovies(data.trending_movies);
-        setTvShows(data.trending_series);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setError('Error fetching data. Please try again later.');
-      }
-    };
-
-    fetchData();
-  }, [jwttoken]);
-
-  if (error) {
-    return <div>{error}</div>;
-  }
+    setMovies(dummyMovies);
+    setTvShows(dummyTvShows);
+  }, []);
 
   const sliderSettings = {
     dots: false,

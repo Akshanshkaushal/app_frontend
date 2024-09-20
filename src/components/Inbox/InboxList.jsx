@@ -100,7 +100,7 @@ export default function InboxList() {
  <FaBell className='text-white absolute right-4'/>
    </div>
 
-   <div className='flex w-full flex-row justify-start items-center  gap-2 m-2 mx-4'>
+   <div className='flex w-full flex-row justify-start items-center  gap-2 m-2 mx-4' onClick={() => navigate("/inbox")}>
     <img src={dumy} className='rounded-full h-12 w-12'/>
     <div className='flex flex-col justify-center'>
     <h2 className='text-gray-200 text-md'>Username  </h2>
@@ -112,7 +112,7 @@ export default function InboxList() {
  <FaBell className='text-white absolute right-4'/>
    </div>
 
-   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4'>
+   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4' onClick={() => navigate("/inbox")}>
     <img src={dumy} className='rounded-full h-12 w-12'/>
     <div className='flex flex-col justify-center'>
     <h2 className='text-gray-200 text-md'>Username  </h2>
@@ -124,7 +124,7 @@ export default function InboxList() {
  <FaBell className='text-white absolute right-4'/>
    </div>
 
-   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4'>
+   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4' onClick={() => navigate("/inbox")}>
     <img src={dumy} className='rounded-full h-12 w-12'/>
     <div className='flex flex-col justify-center'>
     <h2 className='text-gray-200 text-md'>Username  </h2>
@@ -136,7 +136,7 @@ export default function InboxList() {
  <FaBell className='text-white absolute right-4'/>
    </div>
 
-   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4'>
+   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4' onClick={() => navigate("/inbox")}>
     <img src={dumy} className='rounded-full h-12 w-12'/>
     <div className='flex flex-col justify-center'>
     <h2 className='text-gray-200 text-md'>Username  </h2>
@@ -148,7 +148,7 @@ export default function InboxList() {
  <FaBell className='text-white absolute right-4'/>
    </div>
 
-   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4'>
+   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4' onClick={() => navigate("/inbox")}>
     <img src={dumy} className='rounded-full h-12 w-12'/>
     <div className='flex flex-col justify-center'>
     <h2 className='text-gray-200 text-md'>Username  </h2>
@@ -160,7 +160,7 @@ export default function InboxList() {
  <FaBell className='text-white absolute right-4'/>
    </div>
 
-   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4'>
+   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4' onClick={() => navigate("/inbox")}>
     <img src={dumy} className='rounded-full h-12 w-12'/>
     <div className='flex flex-col justify-center'>
     <h2 className='text-gray-200 text-md'>Username  </h2>
@@ -172,7 +172,7 @@ export default function InboxList() {
  <FaBell className='text-white absolute right-4'/>
    </div>
 
-   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4'>
+   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4' onClick={() => navigate("/inbox")}>
     <img src={dumy} className='rounded-full h-12 w-12'/>
     <div className='flex flex-col justify-center'>
     <h2 className='text-gray-200 text-md'>Username  </h2>
@@ -184,7 +184,7 @@ export default function InboxList() {
  <FaBell className='text-white absolute right-4'/>
    </div>
 
-   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4'>
+   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4' onClick={() => navigate("/inbox")}>
     <img src={dumy} className='rounded-full h-12 w-12'/>
     <div className='flex flex-col justify-center'>
     <h2 className='text-gray-200 text-md'>Username  </h2>
@@ -196,7 +196,7 @@ export default function InboxList() {
  <FaBell className='text-white absolute right-4'/>
    </div>
 
-   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4'>
+   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4' onClick={() => navigate("/inbox")}>
     <img src={dumy} className='rounded-full h-12 w-12'/>
     <div className='flex flex-col justify-center'>
     <h2 className='text-gray-200 text-md'>Username  </h2>
@@ -208,7 +208,7 @@ export default function InboxList() {
  <FaBell className='text-white absolute right-4'/>
    </div>
 
-   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4'>
+   <div className='flex w-full flex-row justify-start items-center gap-2 m-2 mx-4' onClick={() => navigate("/inbox")}>
     <img src={dumy} className='rounded-full h-12 w-12'/>
     <div className='flex flex-col justify-center'>
     <h2 className='text-gray-200 text-md'>Username  </h2>

@@ -3,7 +3,7 @@ import { FaArrowLeft, FaSearch, FaShare, FaBookmark, FaCheck, FaThumbsUp, FaThum
 import { Link, useParams } from 'react-router-dom';
 import TvDetails from './Series/SeriesDetails';
 import AddToPlaylistModal from './AddtoPlaylistModal';
- 
+import { dummyMovies, dummyTvShows, dummyPlaylistData } from '../../dummyData';
 
 const Details = () => {
   const { id, type } = useParams();
@@ -13,177 +13,47 @@ const Details = () => {
   const [Watch, setWatch] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [playlists, setPlaylists] = useState([]);
-  const jwttoken = localStorage.getItem('jwttoken');
 
   useEffect(() => {
-    const fetchDetails = async () => {
-      try {
-        const response = await fetch(
-          `https://techsnap-pe2v.onrender.com/movies/movie-details/?id=${id}&type=${type}`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Token ${jwttoken}`,
-            }
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status} - ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        setDetails(data.content_details);
-        console.log(data.content_details.likes)
-
-        setLiked(data.content_details.likes > 0);
-        setSeen(data.content_details.seen);
-        setWatch(data.content_details.must);
-      } catch (error) {
-        console.error('Error fetching details:', error);
-      }
-    };
-
-    fetchDetails();
-  }, [id, jwttoken]);
-
-  useEffect(() => {
-    const fetchPlaylists = async () => {
-      try {
-        const response = await fetch(
-          'https://techsnap-pe2v.onrender.com/movies/get_playlists/',
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Token ${jwttoken}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error(
-            `Error: ${response.status} - ${response.statusText}`
-          );
-        }
-
-        const data = await response.json();
-        setPlaylists(data.data);
-        console.log(data.data)
-      } catch (error) {
-        console.error('Error fetching playlists:', error);
-      }
-    };
-
-    fetchPlaylists();
-  }, [jwttoken]);
-
-  const handleLike = async () => {
-    try {
-      const response = await fetch(
-        `https://techsnap-pe2v.onrender.com/movies/like_movies/?id=${id}&type=movie`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Token ${jwttoken}`,
-          }
-        }
-      );
-
-      const data = await response.json();
-      console.log('Like API response:', data);
-
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} - ${response.statusText}`);
-      }
-
-      setLiked(true);
-      // Store liked state in localStorage
-      localStorage.setItem(`liked_${id}`, 'true');
-    } catch (error) {
-      console.error('Error liking movie:', error);
-    }
-  };
-
-  const handleDislike = async () => {
-    try {
-      const response = await fetch(
-        `https://techsnap-pe2v.onrender.com/movies/dislike_movie/?id=${id}&type=movie`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Token ${jwttoken}`,
-          }
-        }
-      );
-
-      const data = await response.json();
-      console.log('Like API response:', data);
-
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} - ${response.statusText}`);
-      }
-
+    // Use dummy data instead of API call
+    const dummyData = type === 'movie' ? dummyMovies : dummyTvShows;
+    const selectedContent = dummyData.find(item => item.id === parseInt(id));
+    
+    if (selectedContent) {
+      setDetails({
+        ...selectedContent,
+        likes: 10,
+        dislikes: 2,
+        genres: [{ id: 1, name: "Action" }, { id: 2, name: "Drama" }],
+        production_companies: [{ id: 1, name: "Dummy Studios" }],
+      });
       setLiked(false);
-      // Store liked state in localStorage
-      localStorage.setItem(`liked_${id}`, 'false');
-    } catch (error) {
-      console.error('Error disliking movie:', error);
+      setSeen(false);
+      setWatch(false);
     }
+  }, [id, type]);
+
+  useEffect(() => {
+    // Use dummy playlist data
+    setPlaylists(dummyPlaylistData.movies);
+  }, []);
+
+  const handleLike = () => {
+    setLiked(true);
+    setDetails(prev => ({ ...prev, likes: prev.likes + 1 }));
   };
 
-  const handleSeen = async () => {
-    try {
-      const response = await fetch(
-        `https://techsnap-pe2v.onrender.com/movies/add_to_scene/?movie_id=${id}&type=movie`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Token ${jwttoken}`,
-          }
-        }
-      );
-
-      const data = await response.json();
-      console.log('Like API response:', data);
-
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} - ${response.statusText}`);
-      }
-
-      setSeen(true);
-      // Store liked state in localStorage
-      localStorage.setItem(`Seen_${id}`, 'true');
-    } catch (error) {
-      console.error('Error liking movie:', error);
-    }
+  const handleDislike = () => {
+    setLiked(false);
+    setDetails(prev => ({ ...prev, dislikes: prev.dislikes + 1 }));
   };
 
-  const handleWatch = async () => {
-    try {
-      const response = await fetch(
-        `https://techsnap-pe2v.onrender.com/movies/add_to_must/?movie_id=${id}&type=movie`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Token ${jwttoken}`,
-          }
-        }
-      );
+  const handleSeen = () => {
+    setSeen(true);
+  };
 
-      const data = await response.json();
-      console.log('Like API response:', data);
-
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} - ${response.statusText}`);
-      }
-
-      setWatch(true);
-      // Store liked state in localStorage
-      localStorage.setItem(`Watch_${id}`, 'true');
-    } catch (error) {
-      console.error('Error liking movie:', error);
-    }
+  const handleWatch = () => {
+    setWatch(true);
   };
 
   const handleAddToPlaylistClick = () => {
@@ -194,7 +64,7 @@ const Details = () => {
     setShowModal(false);
   };
 
-  const imageUrl = "https://image.tmdb.org/t/p/w500" + details?.poster_path;
+  const imageUrl = details?.poster_path;
 
   const MovieDetails = () => {
     return (
@@ -224,19 +94,19 @@ const Details = () => {
 
         <div className='flex flex-row justify-between items-center mx-8'>
           <div className='flex flex-col justify-center items-center'>
-            <FaBookmark style={{ color: Watch === true ? 'red' : 'white' }} onClick={handleWatch} />
+            <FaBookmark style={{ color: Watch ? 'red' : 'white' }} onClick={handleWatch} />
             <div className='text-sm'>Watchlist</div>
           </div>
           <div className='flex flex-col justify-center items-center'>
-            <FaCheck style={{ color: Seen === true ? 'red' : 'white' }} onClick={handleSeen}/>
+            <FaCheck style={{ color: Seen ? 'red' : 'white' }} onClick={handleSeen}/>
             <div>Seen</div>
           </div>
           <div>
-            <FaThumbsUp style={{ color: liked === true ? 'red' : 'white' }} onClick={handleLike} />
+            <FaThumbsUp style={{ color: liked ? 'red' : 'white' }} onClick={handleLike} />
             <div>{details?.likes}</div>
           </div>
           <div>
-            <FaThumbsDown  onClick={handleDislike} />
+            <FaThumbsDown onClick={handleDislike} />
             <div>{details?.dislikes}</div>
           </div>
         </div>
@@ -272,7 +142,7 @@ const Details = () => {
 
   return (
     <>
-      {type === 'tv' && <TvDetails  playlists={playlists} type={type} id={id} />}
+      {type === 'tv' && <TvDetails playlists={playlists} type={type} id={id} />}
       {type === 'movie' && <MovieDetails />}
       {showModal && (
         <AddToPlaylistModal onClose={handleCloseModal} playlists={playlists} type={type} id={id}/>

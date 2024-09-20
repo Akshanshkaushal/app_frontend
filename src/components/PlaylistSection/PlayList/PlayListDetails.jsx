@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IoIosArrowBack, IoIosArrowDown } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import { dumy, postimg1, postimg2, postimg3, postimg4, postimg5, postimg6, postimg7 } from '../../../assets';
@@ -8,7 +8,38 @@ import Navbar from '../../BottomBar/Navbar';
 import { Sidebar } from 'react-feather';
 import Filter from './Filter';
 
-
+// Add this dummy data at the top of the file
+const dummyPlaylistData = {
+  Seen: {
+    title: "Seen",
+    movies: [
+      { content_type: "movie", title: "Inception", content_id: 1, movie_photo: "/path/to/inception.jpg" },
+      { content_type: "tv", title: "Stranger Things", content_id: 2, movie_photo: "/path/to/stranger-things.jpg" },
+      { content_type: "movie", title: "The Matrix", content_id: 3, movie_photo: "/path/to/matrix.jpg" },
+    ]
+  },
+  Liked: {
+    title: "Liked",
+    movies: [
+      { content_type: "movie", title: "Pulp Fiction", content_id: 4, movie_photo: "/path/to/pulp-fiction.jpg" },
+      { content_type: "tv", title: "Breaking Bad", content_id: 5, movie_photo: "/path/to/breaking-bad.jpg" },
+    ]
+  },
+  "Must Watch": {
+    title: "Must Watch",
+    movies: [
+      { content_type: "movie", title: "Interstellar", content_id: 6, movie_photo: "/path/to/interstellar.jpg" },
+      { content_type: "tv", title: "Game of Thrones", content_id: 7, movie_photo: "/path/to/got.jpg" },
+    ]
+  },
+  Tracking: {
+    title: "Tracking",
+    movies: [
+      { content_type: "tv", title: "The Mandalorian", content_id: 8, movie_photo: "/path/to/mandalorian.jpg" },
+      { content_type: "movie", title: "Dune", content_id: 9, movie_photo: "/path/to/dune.jpg" },
+    ]
+  }
+};
 
 const MovieCard = ({ movie, id }) => {
   const navigate = useNavigate();
@@ -56,7 +87,6 @@ const TrackCard = ({ track, id }) => {
     </div>
   );
 };
-
 
 const movieData = [
    { id: 1, title: "Movie 1", episode: 3, status: 'continueWatching', image:  postimg1 },
@@ -178,8 +208,6 @@ const MovieCardstatic = ({ movie, id }) => {
   );
 };
 
-
-
 const renderMovies = ({activeTab}) => {
   console.log("render")
   console.log(activeTab)
@@ -194,26 +222,25 @@ const renderMovies = ({activeTab}) => {
   );
 };
 
-const PlaylistDetails = ({ playlistData, type, trackedData }) => {
- console.log(trackedData)
+const PlaylistDetails = ({ type }) => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('tv');
+  const [activeTab, setActiveTab] = useState('movie');
+  const [playlistData, setPlaylistData] = useState(null);
 
-   
+  useEffect(() => {
+    // Set playlist data based on the type
+    setPlaylistData(dummyPlaylistData[type]);
+  }, [type]);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
-  const [showDropdown, setShowDropdown] = useState(false);
-
-
-  const [value, setValue] = useState("50");
 
   const filteredData = playlistData?.movies.filter((item) => item.content_type === activeTab);
- 
-  const handleFilterClick = () => {
-    setShowDropdown(!showDropdown);
-  };
+
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const [value, setValue] = useState("50");
 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -221,40 +248,42 @@ const PlaylistDetails = ({ playlistData, type, trackedData }) => {
     setSidebarOpen(!isSidebarOpen);
   };
 
-console.log(activeTab)
-  return (
-    <div className="text-white overflow-x-hidden  shadow-md rounded-md">
-      <div className='flex flex-row mb-4  items-center bg-gray-800 w-full h-[4rem]'>
-        <IoIosArrowBack size={20} className='text-white absolute left-0 mx-2' onClick={() => navigate("/playlist")} />
-        <h3 className="text-3xl font-bold mx-8">{playlistData?.title || "Tracked"}</h3>
-      </div>
-      {type !== 'Tracking'   && (
-      <div className='flex flex-row  text-2xl font-bold mb-6   gap-6 w-full'>
-        <div className='flex flex-col justify-center items-center w-1/2'>
-          <button
-            className={`flex justify-start items-center focus:outline-none `}
-            onClick={() => handleTabChange('movie')}
-          >
-            Movies
-          </button>
-          {activeTab === 'movie' && <div className="h-1 rounded-lg bg-green-500 w-full"></div>}
-        </div>
-         <div className='flex flex-col justify-center items-center w-1/2'>
-          <button
-            className={`focus:outline-none `}
-            onClick={() => handleTabChange('tv')}
-          >
-            TV Shows
-          </button>
-          {activeTab === 'tv' && <div className="h-1 bg-green-500 w-full"></div>}
-        </div>
-      </div>
-      )
-      }
+  const handleFilterClick = () => {
+    setShowDropdown(!showDropdown);
+  };
 
-      {type === 'Tracking'  && (
+  return (
+    <div className="text-white overflow-x-hidden shadow-md rounded-md">
+      <div className='flex flex-row mb-4 items-center bg-gray-800 w-full h-[4rem]'>
+        <IoIosArrowBack size={20} className='text-white absolute left-0 mx-2' onClick={() => navigate("/playlist")} />
+        <h3 className="text-3xl font-bold mx-8">{playlistData?.title || type}</h3>
+      </div>
+
+      {type !== 'Must Watch' && type !== 'Tracking' && (
+        <div className='flex flex-row text-2xl font-bold mb-6 gap-6 w-full'>
+          <div className='flex flex-col justify-center items-center w-1/2'>
+            <button
+              className={`flex justify-start items-center focus:outline-none `}
+              onClick={() => handleTabChange('movie')}
+            >
+              Movies
+            </button>
+            {activeTab === 'movie' && <div className="h-1 rounded-lg bg-green-500 w-full"></div>}
+          </div>
+          <div className='flex flex-col justify-center items-center w-1/2'>
+            <button
+              className={`focus:outline-none `}
+              onClick={() => handleTabChange('tv')}
+            >
+              TV Shows
+            </button>
+            {activeTab === 'tv' && <div className="h-1 bg-green-500 w-full"></div>}
+          </div>
+        </div>
+      )}
+
+      {type === 'Tracking' && (
         <div className='flex flex-row justify-center items-center gap-2 '>
-     
           <div  onClick={() => handleTabChange('continueWatching')}
         className={` text-sm px-1 text-white cursor-pointer ${activeTab === 'continueWatching' ? 'bg-green-500' : 'bg-gray-700'}`}>continueWatching</div>
       
@@ -267,13 +296,13 @@ console.log(activeTab)
         </div>
       )}
 
-      {type !== 'Must Watch'   && (
-      <div className='flex flex-row justify-center items-center gap-4 m-2 mt-4'>
-        <div className=' text-gray-300 text-md p-1'>4 titles</div>
-        <div className=' text-gray-300 text-md p-1 flex flex-row justify-center items-center' onClick={handleFilterClick}>
-          <div>sorted by Relevance</div>
-          <IoIosArrowDown  />
-          {showDropdown && (
+      {type !== 'Must Watch' && (
+        <div className='flex flex-row justify-center items-center gap-4 m-2 mt-4'>
+          <div className=' text-gray-300 text-md p-1'>4 titles</div>
+          <div className=' text-gray-300 text-md p-1 flex flex-row justify-center items-center' onClick={handleFilterClick}>
+            <div>sorted by Relevance</div>
+            <IoIosArrowDown  />
+            {showDropdown && (
               <div className="absolute top-0 mt-44 w-56 bg-white border rounded-md shadow-md overflow-hidden z-10">
                 <div className="py-1">
                   <button
@@ -297,77 +326,58 @@ console.log(activeTab)
                 </div>
               </div>
             )}
+          </div>
+          <FaFilter className='ml-auto' onClick={toggleSidebar} />
+          <Filter isOpen={isSidebarOpen} onClose={toggleSidebar} />
+
+          <div className='text-xl rotate-45'>+</div>
         </div>
-        <FaFilter className='ml-auto' onClick={toggleSidebar} />
-        <Filter isOpen={isSidebarOpen} onClose={toggleSidebar} />
-
-        <div className='text-xl rotate-45'>+</div>
-       
-      </div>
       )}
-  <div className='bg-gray-300 w-full mb-4 opacity-25 mx-4 h-[0.1rem]'></div>
 
+      <div className='bg-gray-300 w-full mb-4 opacity-25 mx-4 h-[0.1rem]'></div>
 
-  {activeTab === 'continueWatching' && renderMovies({ activeTab })}
-{activeTab === "Havent started" && renderMovies({ activeTab })}
-{activeTab === 'Comming soon' && renderMovies({ activeTab })}
+      {activeTab === 'continueWatching' && renderMovies({ activeTab })}
+      {activeTab === "Havent started" && renderMovies({ activeTab })}
+      {activeTab === 'Comming soon' && renderMovies({ activeTab })}
 
-      {/* <div className="grid grid-cols-2 gap-2">
-        {filteredData.map((item, index) => (
-          <MovieCard key={index} movie={item} id={item.content_id} />
-        ))}
-      </div> */}
-      
-      {type === 'Seen'  && (
+      {type !== 'Must Watch' && type !== 'Tracking' && (
         <div className="grid grid-cols-3 gap-2">
-        {filteredData.map((item, index) => (
-          <MovieCard key={index} movie={item} id={item.content_id} />
-        ))}
+          {filteredData && filteredData.map((item, index) => (
+            <MovieCard key={index} movie={item} id={item.content_id} />
+          ))}
         </div>
-        
       )}
 
-      {type === 'Liked'  && (
-        <div className="grid grid-cols-3 gap-2">
-        {filteredData.map((item, index) => (
-          <MovieCard key={index} movie={item} id={item.content_id} />
-        ))}
-        </div>
-        
-      )}
-
-      {type === 'Must Watch'  && (
-        <div className="grid grid-cols-2 justify-center items-center gap-8  p-8">
-     <MustStatic/>
-     <MustStatic2/>
-     <MustStatic3/>
-     <MustStatic4/>
-         </div>      
-        
-      )}
-
-      {type === 'Tracking'  && (
-        <div className="grid grid-rows-1 gap-2">
-          {trackedData &&
-            trackedData.map((track, index) => (
-              <div>
-              <TrackCard key={index} track={track} id={track.content_id} />
-              <div className="h-2 bg-green-500" style={{ width: `${value}%` }}></div>
-              </div>
-            ))}
+      {type === 'Must Watch' && (
+        <div className="grid grid-cols-2 justify-center items-center gap-8 p-8">
+          <MustStatic/>
+          <MustStatic2/>
+          <MustStatic3/>
+          <MustStatic4/>
         </div>      
       )}
 
-      {type === 'Must Watch'  && (
-      <div className="flex justify-center items-center fixed w-full bottom-0">
-            <div className=" mb-2 bg-blue-700 w-3/4 h-[4rem] rounded-2xl flex flex-row p-4 items-center">
-              <button className="text-white text-lg">New Collection</button>
-              <FaPlus size={20}   className="text-white absolute right-0  mx-20" />
+      {type === 'Tracking' && (
+        <div className="grid grid-rows-1 gap-2">
+          {filteredData && filteredData.map((track, index) => (
+            <div key={index}>
+              <TrackCard track={track} id={track.content_id} />
+              <div className="h-2 bg-green-500" style={{ width: `${value}%` }}></div>
             </div>
-          </div>
-          )}
+          ))}
+        </div>      
+      )}
 
-          <Navbar/>
+      {type === 'Must Watch' && (
+        <div className="flex justify-center items-center fixed w-full bottom-0">
+          <div className=" mb-2 bg-blue-700 w-3/4 h-[4rem] rounded-2xl flex flex-row p-4 items-center">
+            <button className="text-white text-lg">New Collection</button>
+            <FaPlus size={20}   className="text-white absolute right-0  mx-20" />
+          </div>
+        </div>
+      )}
+
+      <Navbar/>
     </div>
   );
 };

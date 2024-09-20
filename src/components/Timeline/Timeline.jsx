@@ -5,44 +5,18 @@ import { IoIosArrowBack } from 'react-icons/io';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../BottomBar/Navbar';
 import './style.css'; // Import the stylesheet
+import { dummyMovies, dummyTvShows } from '../../dummyData';
 
 const TimelineItem = () => {
   const [movies, setMovies] = useState([]);
   const [tvShows, setTvShows] = useState([]);
   const [activeTab, setActiveTab] = useState('movies');
-  const [error, setError] = useState(null);
-
-  const jwttoken = localStorage.getItem('jwttoken');
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://techsnap-pe2v.onrender.com//movies/upcoming/', {
-          headers: {
-            Authorization: `Token ${jwttoken}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`Failed to fetch data. Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        setMovies(data.movies);
-        setTvShows(data.tv_shows);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setError('Error fetching data. Please try again later.');
-      }
-    };
-
-    fetchData();
-  }, [jwttoken]);
-
-  if (error) {
-    return <div>{error}</div>;
-  }
+    setMovies(dummyMovies);
+    setTvShows(dummyTvShows);
+  }, []);
 
   return (
     <div className="timeline-container">

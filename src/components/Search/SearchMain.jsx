@@ -10,61 +10,29 @@ import Navbar from '../BottomBar/Navbar';
 import { FaFilter, FaSearch } from 'react-icons/fa';
 import Filter from '../PlaylistSection/PlayList/Filter';
 import { BsThreeDots, BsThreeDotsVertical } from 'react-icons/bs';
+import { dummyMovies, dummyTvShows } from '../../dummyData';
 
 export default function SearchMain() {
   const [movies, setMovies] = useState([]);
   const [tvShows, setTvShows] = useState([]);
   const [activeTab, setActiveTab] = useState('movies');
-  const [error, setError] = useState(null);
-
   const [showDropdown, setShowDropdown] = useState(false);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-
 
   const handleFilterClick = () => {
     setShowDropdown(!showDropdown);
   };
 
-
-
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
 
- 
-
-
-  const jwttoken = localStorage.getItem('jwttoken');
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://techsnap-pe2v.onrender.com/movies/trending/', {
-          headers: {
-            Authorization: `Token ${jwttoken}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`Failed to fetch data. Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        setMovies(data.trending_movies);
-        setTvShows(data.trending_series);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setError('Error fetching data. Please try again later.');
-      }
-    };
-
-    fetchData();
-  }, [jwttoken]);
-
-  if (error) {
-    return <div>{error}</div>;
-  }
+    setMovies(dummyMovies);
+    setTvShows(dummyTvShows);
+  }, []);
 
   const sliderSettings = {
     dots: false,
@@ -76,8 +44,6 @@ export default function SearchMain() {
     autoplay: true, // Enable autoplay
     autoplaySpeed: 2000, // Set the autoplay speed in milliseconds (e.g., 3000 for 3 seconds)
   };
-
-
 
   return (
     <div className="">
@@ -169,11 +135,11 @@ export default function SearchMain() {
       </div>
             </div>
       <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
-  {movies.map((item) => (
+  {dummyMovies.map((item) => (
     <Link to={`/details/movie/${item.id}`} key={item.id}>
       <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
         <div className="movie-card ">
-          <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+          <img src={item.poster_path} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
         </div>
         <h3 className='absolute bottom-8 left-4  text-gray-200 text-md'>{item.title}</h3>
 
@@ -189,11 +155,11 @@ export default function SearchMain() {
       <IoIosArrowForward size={20} className='text-white mx-2 ' onClick={() => navigate("/home")} />
             </div>
       <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
-  {movies.map((item) => (
+  {dummyMovies.map((item) => (
     <Link to={`/details/movie/${item.id}`} key={item.id}>
       <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
         <div className="movie-card ">
-          <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+          <img src={item.poster_path} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
         </div>
         <h3 className='absolute bottom-8 left-4  text-gray-200 text-md'>{item.title}</h3>
 
@@ -208,11 +174,11 @@ export default function SearchMain() {
       <IoIosArrowForward size={20} className='text-white mx-2 ' onClick={() => navigate("/home")} />
             </div>
       <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
-  {movies.map((item) => (
+  {dummyMovies.map((item) => (
     <Link to={`/details/movie/${item.id}`} key={item.id}>
       <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
         <div className="movie-card ">
-          <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+          <img src={item.poster_path} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
         </div>
         <h3 className='absolute bottom-8 left-4  text-gray-200 text-md'>{item.title}</h3>
 
@@ -227,11 +193,11 @@ export default function SearchMain() {
       <IoIosArrowForward size={20} className='text-white mx-2 ' onClick={() => navigate("/home")} />
             </div>
       <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
-  {movies.map((item) => (
+  {dummyMovies.map((item) => (
     <Link to={`/details/movie/${item.id}`} key={item.id}>
       <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
         <div className="movie-card ">
-          <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+          <img src={item.poster_path} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
         </div>
         <h3 className='absolute bottom-8 left-4  text-gray-200 text-md'>{item.title}</h3>
 
@@ -295,11 +261,11 @@ export default function SearchMain() {
       <IoIosArrowForward size={20} className='text-white mx-2 ' onClick={() => navigate("/home")} />
             </div>
       <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
-  {movies.map((item) => (
+  {dummyMovies.map((item) => (
     <Link to={`/details/movie/${item.id}`} key={item.id}>
       <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
         <div className="movie-card ">
-          <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+          <img src={item.poster_path} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
         </div>
         <h3 className='absolute bottom-8 left-4  text-gray-200 text-md'>{item.title}</h3>
 
@@ -316,11 +282,11 @@ export default function SearchMain() {
       <IoIosArrowForward size={20} className='text-white mx-2 ' onClick={() => navigate("/home")} />
             </div>
       <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
-  {movies.map((item) => (
+  {dummyMovies.map((item) => (
     <Link to={`/details/movie/${item.id}`} key={item.id}>
       <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
         <div className="movie-card ">
-          <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+          <img src={item.poster_path} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
         </div>
         <h3 className='absolute bottom-8 left-4  text-gray-200 text-md'>{item.title}</h3>
 
@@ -335,11 +301,11 @@ export default function SearchMain() {
       <IoIosArrowForward size={20} className='text-white mx-2 ' onClick={() => navigate("/home")} />
             </div>
       <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
-  {movies.map((item) => (
+  {dummyMovies.map((item) => (
     <Link to={`/details/movie/${item.id}`} key={item.id}>
       <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
         <div className="movie-card ">
-          <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+          <img src={item.poster_path} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
         </div>
         <h3 className='absolute bottom-8 left-4  text-gray-200 text-md'>{item.title}</h3>
 
@@ -354,11 +320,11 @@ export default function SearchMain() {
       <IoIosArrowForward size={20} className='text-white mx-2 ' onClick={() => navigate("/home")} />
             </div>
       <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
-  {movies.map((item) => (
+  {dummyMovies.map((item) => (
     <Link to={`/details/movie/${item.id}`} key={item.id}>
       <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
         <div className="movie-card ">
-          <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+          <img src={item.poster_path} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
         </div>
         <h3 className='absolute bottom-8 left-4  text-gray-200 text-md'>{item.title}</h3>
 
@@ -424,11 +390,11 @@ export default function SearchMain() {
       <IoIosArrowForward size={20} className='text-white mx-2 ' onClick={() => navigate("/home")} />
             </div>
       <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
-  {movies.map((item) => (
+  {dummyMovies.map((item) => (
     <Link to={`/details/movie/${item.id}`} key={item.id}>
       <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
         <div className="movie-card ">
-          <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+          <img src={item.poster_path} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
         </div>
         <h3 className='absolute bottom-8 left-4  text-gray-200 text-md'>{item.title}</h3>
 
@@ -444,11 +410,11 @@ export default function SearchMain() {
       <IoIosArrowForward size={20} className='text-white mx-2 ' onClick={() => navigate("/home")} />
             </div>
       <div className='flex flex-row overflow-x-auto overflow-y-hidden scrollb'> 
-  {movies.map((item) => (
+  {dummyMovies.map((item) => (
     <Link to={`/details/movie/${item.id}`} key={item.id}>
       <div className="relative movie-card-container h-64 w-40  flex flex-col justify-between ">
         <div className="movie-card ">
-          <img src={item.image_url} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
+          <img src={item.poster_path} alt={item.title} className='w-full h-3/4 object-contain mb-4 rounded-4xl ' />
         </div>
         <h3 className='absolute bottom-8 left-4  text-gray-200 text-md'>{item.title}</h3>
 

@@ -1,16 +1,14 @@
 // MovieResults.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { FaFilter, FaSearch } from 'react-icons/fa';
 import Filter from '../PlaylistSection/PlayList/Filter';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import { dummyMovies, dummyTvShows } from '../../dummyData';
 
 const MovieResults = ({ query, setQuery }) => {
   const [results, setResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
-  const jwttoken = localStorage.getItem('jwttoken');
-
   const [showDropdown, setShowDropdown] = useState(false);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -18,30 +16,20 @@ const MovieResults = ({ query, setQuery }) => {
     setShowDropdown(!showDropdown);
   };
 
-
-
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
 
-  const handleMovieSearch = async (newQuery) => {
+  const handleMovieSearch = (newQuery) => {
     setQuery(newQuery);
 
     if (newQuery.trim() !== '') {
-      try {
-        const response = await axios.get(
-          `https://techsnap-pe2v.onrender.com/movies/search/?query=${newQuery}`,
-          {
-            headers: {
-              Authorization: `Token ${jwttoken}`,
-            },
-          }
-        );
-        setResults(response.data.results);
-        setShowResults(true);
-      } catch (error) {
-        console.error('Error fetching movie results:', error);
-      }
+      // Filter dummy data based on the search query
+      const filteredResults = [...dummyMovies, ...dummyTvShows].filter(item =>
+        item.title.toLowerCase().includes(newQuery.toLowerCase())
+      );
+      setResults(filteredResults);
+      setShowResults(true);
     } else {
       setShowResults(false);
     }
@@ -52,7 +40,7 @@ const MovieResults = ({ query, setQuery }) => {
       <Link to={`/details/${result.content_type}/${result.id}`} key={result.id}>
         <div
           className="relative p-4 border border-gray-700 mb-2 rounded-md h-[18rem]"
-          style={{ background: `url(${result.poster_url}) top/contain no-repeat` }}
+          style={{ background: `url(${result.poster_path}) top/contain no-repeat` }}
         >
           <p className="absolute bottom-0 left-0 text-sm h-[3rem] text-black bg-white bg-opacity-75 w-full">
             {result.title}

@@ -25,40 +25,73 @@ const Card = ({ title, onClick }) => (
   </div>
 );
 
+// Updated dummy data structure
+const dummyPlaylistData = {
+  title: "My Playlists",
+  is_owner: true,
+  playlists: [
+    {
+      title: "My Favorites",
+      about: "A collection of my favorite movies",
+      is_private: false,
+      is_highlight: true,
+      movie_count: 15,
+      created_at: "2023-05-01T12:00:00Z",
+      movies: [
+        { content_type: "movie", title: "Inception", content_id: 1 },
+        { content_type: "tv", title: "Stranger Things", content_id: 2 },
+      ]
+    },
+    {
+      title: "Action Movies",
+      about: "Exciting action-packed films",
+      is_private: true,
+      is_highlight: false,
+      movie_count: 8,
+      created_at: "2023-04-15T10:30:00Z",
+      movies: [
+        { content_type: "movie", title: "Die Hard", content_id: 3 },
+        { content_type: "movie", title: "Mad Max: Fury Road", content_id: 4 },
+      ]
+    },
+    {
+      title: "Comedies",
+      about: "Funny movies to lighten the mood",
+      is_private: false,
+      is_highlight: false,
+      movie_count: 12,
+      created_at: "2023-03-20T14:45:00Z",
+      movies: [
+        { content_type: "movie", title: "Bridesmaids", content_id: 5 },
+        { content_type: "tv", title: "The Office", content_id: 6 },
+      ]
+    }
+  ]
+};
+
 export default function Platlists() {
   const [data, setData] = useState(null);
-  const [playlistdata, setPlaylistData] = useState(null);
+  const [playlistData, setPlaylistData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [showCreatePlaylistPopup, setShowCreatePlaylistPopup] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [sortType, setSortType] = useState('');
 
   const navigate = useNavigate();
-  const jwttoken = localStorage.getItem('jwttoken');
 
   const handlePlaylistClick = (playlistType) => {
     navigate(`/playlist/${playlistType}`);
   };
 
-  const handleCreatePlaylist = async (playlistData) => {
-    try {
-      const createPlaylistResponse = await fetch('https://techsnap-pe2v.onrender.com/movies/create_playlist/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${jwttoken}`,
-        },
-        body: JSON.stringify(playlistData),
-      });
-
-      const createPlaylistData = await createPlaylistResponse.json();
-      console.log(createPlaylistData);
-
-      // Close the popup after creating the playlist
-      setShowCreatePlaylistPopup(false);
-    } catch (error) {
-      console.error('Error creating playlist:', error);
-    }
+  const handleCreatePlaylist = (newPlaylistData) => {
+    const newPlaylist = {
+      ...newPlaylistData,
+      movie_count: 0,
+      created_at: new Date().toISOString(),
+      movies: []
+    };
+    setPlaylistData([...playlistData, newPlaylist]);
+    setShowCreatePlaylistPopup(false);
   };
 
   const handleSortTypeChange = (type) => {
@@ -67,41 +100,30 @@ export default function Platlists() {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://techsnap-pe2v.onrender.com/accounts/profile', {
-          headers: {
-            Authorization: `Token ${jwttoken}`,
-          },
-        });
-        const data = await response.json();
-        setData(data);
-        let playlists = data.data.playlists;
-        console.log(playlists)
+    // Set initial data
+    setData(dummyPlaylistData);
+    setPlaylistData(dummyPlaylistData.playlists);
+  }, []);
 
-    
-        switch (sortType) {
-          case 'alphabetical':
-            playlists = playlists.sort((a, b) => a.title.localeCompare(b.title));
-            break;
-            case 'movieCount':
-              playlists = playlists.sort((a, b) => b.movie_count - a.movie_count);
-              break;
-          case 'dateCreation':
-            playlists = playlists.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-            break;
-          default:
-            break;
-        }
+  useEffect(() => {
+    let sortedPlaylists = [...playlistData];
 
-        setPlaylistData(playlists);
-      } catch (error) {
-        console.error('Error fetching profile data:', error);
-      }
-    };
+    switch (sortType) {
+      case 'alphabetical':
+        sortedPlaylists.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case 'movieCount':
+        sortedPlaylists.sort((a, b) => b.movie_count - a.movie_count);
+        break;
+      case 'dateCreation':
+        sortedPlaylists.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        break;
+      default:
+        break;
+    }
 
-    fetchData();
-  }, [jwttoken,  sortType]);
+    setPlaylistData(sortedPlaylists);
+  }, [sortType]);
 
   const handleFilterClick = () => {
     setShowDropdown(!showDropdown);
@@ -173,10 +195,9 @@ export default function Platlists() {
 
         <div className="">
           <section className="grid grid-rows-1 w-full gap-2 mt-4 ">
-            {playlistdata &&
-              playlistdata.map((playlist, index) => (
-                <Card key={index} title={playlist.title} onClick={() => handlePlaylistClick(playlist.title)} />
-              ))}
+            {playlistData.map((playlist, index) => (
+              <Card key={index} title={playlist.title} onClick={() => handlePlaylistClick(playlist.title)} />
+            ))}
           </section>
         </div>
      
